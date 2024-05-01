@@ -1,4 +1,7 @@
-# StudiFrontJo24
+# Front Jeux Olympiques 2024 - Studi
+Projet effectué dans le cadre de la validation du Bloc - développement d'une solution digitale avec Python.
+Utilisation de HTML, SCSS, Angular
+Utilisation de VisualStudiCode
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 
