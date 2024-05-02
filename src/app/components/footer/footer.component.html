@@ -1,0 +1,53 @@
+<footer>
+    <div class="flex-footer">
+        <div class="footer-left">
+            <div class="footer-logo">
+                <img src="assets/images/logo/logo_jo_2024_animation.svg" alt="Logo Jeux Olympiques 2024"
+                    title="Logo Jeux Olympiques 2024" aria-label="Logo Jeux Olympiques 2024">
+            </div>
+            <div class="content-info">
+                <div class="content-info-socials">
+                    <p class="content-info-socials-item">
+                        <a href="https://www.facebook.com/Paris2024" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/images/logo/facebook.svg" alt="Logo Facebook" title="Logo Facebook"
+                                aria-label="Logo Facebook">
+                        </a>
+                    </p>
+                    <p class="content-info-socials-item">
+                        <a href="https://twitter.com/Paris2024" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/images/logo/twitter.png" alt="Logo Twitter" title="Logo Twitter"
+                                aria-label="Logo Twitter">
+                        </a>
+                    </p>
+                    <p class="content-info-socials-item">
+                        <a href="https://www.instagram.com/paris2024" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/images/logo/instagram.png" alt="Logo Instagram" title="Logo Instagram"
+                                aria-label="Logo Instagram">
+                        </a>
+                    </p>
+                </div>
+                <nav class="footer-nav">
+                    <a routerLink="/" aria-label="Accueil">Accueil</a>
+                    <a routerLink="/offers" aria-label="Offres">Offres</a>
+                    <a routerLink="/events" aria-label="Epreuves">Epreuves</a>
+                    <a routerLink="/contact" aria-label="Contact">Contact</a>
+                    <a routerLink="/" aria-label="Mentions légales">Mentions légales</a>
+                </nav>
+                <div class="content-info-copyright">
+                    <p aria-label="Copyright">
+                        © 2024 - Tous droits réservés - Jeux olympiques de Paris
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="partners">
+            <p class="partners-title">Partenaires officiels</p>
+            <div class="partner-content">
+                <div class="partner" *ngFor="let partner of partnersData">
+                    <p>{{partner.name}}</p>
+                </div>
+            </div>
+            <p class="partners-etc">Et bien d'autres ...</p>
+        </div>
+    </div>
+</footer>
