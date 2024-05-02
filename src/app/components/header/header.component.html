@@ -4,10 +4,10 @@
         <div class="logo"><img src="assets/images/logo/logo_jo_2024.svg" alt="logo"></div>
 
         <nav role="navigation" aria-label="Navigation principale">
-            <div class="burger">
+            <div class="burger" (click)="toggleMenu()">
                 <p>☰</p>
             </div>
-            <div class="main_pages">
+            <div class="main_pages" [class.is-open]="isMenuOpen">
                 <a routerLink="/" aria-label="Accueil">Accueil</a>
                 <a routerLink="/offers" aria-label="Offres">Offres</a>
                 <a routerLink="/events" aria-label="Epreuves">Epreuves</a>
