@@ -1,0 +1,181 @@
+@use "../mixins";
+@use "../variables" as v;
+@use "./link_button" with(
+    $button-font-color: v.$header-menu-color,
+    $button-font-color-hover: v.$header-menu-color-hover,
+    $button-border-color: v.$header-menu-color,
+    $button-border-color-hover: v.$header-menu-color-hover,
+    $button-background-color: v.$header-menu-background-color,
+    $button-background-color-hover: v.$header-menu-background-color-hover,
+    $button-fontsize: 1.1rem,
+    $button-padding: 0.15rem 1rem,
+    $button-fontweight: 700,
+    $button-border-radius: 2rem
+);
+
+header {
+    width: 100%;
+    z-index: 999;
+    vertical-align: middle;
+    height: 7rem;
+    margin: 0;
+    font-family: Paris2024, sans-serif;
+    background-color: v.$header-background-color;
+    color: v.$header-color;
+
+    .flex-header {
+        /*conteneur flex*/
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+
+        // Left part : title
+        .title {
+            padding: 0 1rem;
+            height: 4rem;
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h1 {
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                font-size: 3rem;
+            }
+
+            @include mixins.media-max("widescren-up") {
+                width: 40%;
+
+                h1 {
+                    font-size: 2.5rem;
+                }
+            }
+
+            @include mixins.media-max("desktop-down") {
+                width: 35%;
+
+                h1 {
+                    font-size: 2rem;
+                }
+            }
+
+            // The menu burger ies displayed so there is more place for the title
+            @include mixins.media-max("desktop-up") {
+                width: 50%;
+
+                h1 {
+                    font-size: 1.8rem;
+                }
+            }
+
+            @include mixins.media-max("phone-down") {
+                h1 {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+
+        // Middle part : logo
+        .logo {
+            height: 6rem;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        // Right part : navigation
+        nav {
+            margin: auto 1rem;
+            height: 4rem;
+            width: 45%;
+
+            @include mixins.media-max("desktop-up") {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                margin:0;
+            }
+        
+            // Display links horizontally
+            .main_pages {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                height: 100%;
+
+                @include mixins.media-max("desktop-up") {
+                    display: none;
+                    flex-direction: column;
+                    background: v.$header-background-color;
+                    width: 10rem;
+                    height: auto;
+                    padding: 1rem 0 0 0;
+                }
+        
+                // display the links as a button
+                a {
+                    height: 50%;
+                    width: auto;
+                    margin: 0 0.25rem;
+                    flex-shrink: 0;
+
+                    @include mixins.media-max("widescreen-up") {
+                        font-size: 1rem;
+                        padding: 0.15rem 0.75rem;
+                    }
+
+                    @include mixins.media-max("desktop-down") {
+                        font-size: 1rem;
+                        padding: 0.15rem 0.5rem;
+                    }
+
+                    @include mixins.media-max("desktop-up") {
+                        font-size: 1.1rem;
+                        padding: 0.25rem 0.5rem;
+                        border: none;
+                        height: 2rem;
+
+                        &:hover {
+                            border: none;
+                            background-color: v.$header-menu-background-color;
+                            color: v.$header-menu-color;
+                            border-right: v.$header-menu-color 0.3rem solid;
+                            border-left: v.$header-menu-color 0.3rem solid;
+                            border-radius: 0.5rem;
+                        }
+                    }
+                }
+            }
+        
+            .burger {
+                display: none;
+
+                // Displays the menu burger
+                @include mixins.media-max("desktop-up") {
+                    display: flex;
+                    font-size: 2.75rem;
+                    font-weight: 800;
+                    padding-left: 0.5rem;
+                    color: v.$header-menu-color;
+                    cursor: pointer;
+                    margin-right: 1rem;
+
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+
+            // when the menu burger is clicked, the links are displayed
+            @include mixins.media-max("desktop-up") {      
+                .is-open {
+                    display: flex;
+                }
+            }
+        }
+    }
+}
