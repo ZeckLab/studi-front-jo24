@@ -1,23 +1,36 @@
 @use '../global.scss';
-
-$footer-background-color: #141414;
-$footer-color: #D6C278;
+@use '../mixins.scss';
+@use '../variables.scss' as v;
 
 footer {
     width: 100%;
     height: 15rem;
-    background-color: $footer-background-color;
-    box-shadow: 1px 1px 2px $footer-background-color;
-    color: $footer-color;
+    background-color: v.$footer-background-color;
+    box-shadow: 1px 1px 2px v.$footer-background-color;
+    color: v.$footer-color;
     font-family: Paris2024, sans-serif;
     z-index: 999;
     margin: 0;
+
+    @include mixins.media-max("desktop-down") {
+        height: 20rem;
+    }
+
+    @include mixins.media-max("between-phone-tablet") {
+        border-radius: 2rem;
+    }
 
     .flex-footer {
         /*conteneur flex*/
         display: flex;
         justify-content: space-between;
         height: 100%;
+
+        @include mixins.media-max("desktop-down") {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; 
+        }
 
         .footer-left {
             display: flex;
@@ -26,6 +39,17 @@ footer {
             width: 60%;
             height: 100%;
             gap: 0 1rem;
+
+            @include mixins.media-max("desktop-down") {
+                width: 90%;
+                border-bottom: v.$footer-color 0.1rem solid;
+                border-radius: 1.5rem;
+
+            }
+
+            @include mixins.media-max("between-phone-tablet") {
+                width: 100%;
+            }
 
             .footer-logo {
                 display: flex;
@@ -37,6 +61,10 @@ footer {
                 img {
                     height: 80%;
                     width: auto;
+                }
+
+                @include mixins.media-max("between-phone-tablet") {
+                    display: none;
                 }
             }
 
@@ -58,12 +86,28 @@ footer {
                     height: 2.5rem;
                     text-align: center;
 
+                    @include mixins.media-max("tablet-down") {
+                        height: 2rem;
+                    }
+
+                    @include mixins.media-max("between-phone-tablet") {
+                        height: 1.5rem;
+                    }
+
                     .content-info-socials-item img {
                         height: 2.5rem;
                         margin: 0 0.5rem;
                         align-items: center;
-                        background-color: $footer-color;
+                        background-color: v.$footer-color;
                         border-radius: 2rem;
+
+                        @include mixins.media-max("tablet-down") {
+                            height: 2rem;
+                        }
+
+                        @include mixins.media-max("between-phone-tablet") {
+                            height: 1.5rem;
+                        }
                     }
                 }
 
@@ -73,11 +117,19 @@ footer {
                     justify-content: center;
                     gap: 0 1.5rem;
 
+                    @include mixins.media-max("tablet-down") {
+                        gap: 0 1rem;
+                    }
+
                     a {
-                        color: $footer-color;
+                        color: v.$footer-color;
                         font-size: 1.2rem;
                         text-decoration: none;
                         transition: color 0.3s;
+
+                        @include mixins.media-max("tablet-down") {
+                            font-size: 1rem;
+                        }
 
                         &:hover {
                             transition: 0.5s;
@@ -91,6 +143,10 @@ footer {
                     font-weight: bold;
                     padding: 0.5rem 0;
                     text-align: center;
+
+                    @include mixins.media-max("tablet-down") {
+                        font-size: 1rem;
+                    }
                 }
             }
         }
@@ -105,10 +161,24 @@ footer {
             height: 90%;
             margin:auto;
 
+            @include mixins.media-max("desktop-down") {
+                width: 90%;
+                border-top: v.$footer-color 0.1rem solid;
+                border-radius: 1.5rem;
+            }
+
+            @include mixins.media-max("between-phone-tablet") {
+                width: 100%;
+            }
+
             .partners-title {
                 font-size: 1.5rem;
                 font-weight: bold;
-                padding: 0.5rem;
+                padding: 1rem 0.5rem;
+
+                @include mixins.media-max("tablet-down") {
+                    font-size: 1rem;
+                }
             }
 
             .partner-content {
@@ -118,12 +188,21 @@ footer {
                 gap: 0.75rem 1rem;
                 flex-wrap: wrap;
                 padding: 0 2rem;
+
+                @include mixins.media-max("tablet-down") {
+                    gap: 0.5rem 0.75rem;
+                    font-size: 0.8rem;
+                }
             }
 
             .partners-etc {
                 font-size: 1.2rem;
                 font-weight: bold;
-                padding: 0.5rem;
+                padding: 1rem 0.5rem;
+
+                @include mixins.media-max("tablet-down") {
+                    font-size: 0.8rem;
+                }
             }
         }
     }
