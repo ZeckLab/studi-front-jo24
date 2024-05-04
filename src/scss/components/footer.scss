@@ -13,7 +13,7 @@ footer {
     margin: 0;
 
     @include mixins.media-max("desktop-down") {
-        height: 20rem;
+        height: 23rem;
     }
 
     @include mixins.media-max("between-phone-tablet") {
@@ -41,7 +41,8 @@ footer {
             gap: 0 1rem;
 
             @include mixins.media-max("desktop-down") {
-                width: 90%;
+                width: 95%;
+                height: 50%;
                 border-bottom: v.$footer-color 0.1rem solid;
                 border-radius: 1.5rem;
 
@@ -56,7 +57,6 @@ footer {
                 justify-content: center;
                 align-items: center;
                 height: 100%;
-                padding: 0.5rem;
 
                 img {
                     height: 80%;
@@ -118,7 +118,7 @@ footer {
                     gap: 0 1.5rem;
 
                     @include mixins.media-max("tablet-down") {
-                        gap: 0 1rem;
+                        gap: 0 0.9rem;
                     }
 
                     a {
@@ -162,9 +162,10 @@ footer {
             margin:auto;
 
             @include mixins.media-max("desktop-down") {
-                width: 90%;
+                width: 95%;
                 border-top: v.$footer-color 0.1rem solid;
                 border-radius: 1.5rem;
+                height: 50%;
             }
 
             @include mixins.media-max("between-phone-tablet") {
