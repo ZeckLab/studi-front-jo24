@@ -10,28 +10,44 @@
                     <p class="content-info-socials-item">
                         <a href="https://www.facebook.com/Paris2024" target="_blank" rel="noopener noreferrer">
                             <img src="assets/images/logo/facebook.svg" alt="Logo Facebook" title="Logo Facebook"
-                                aria-label="Logo Facebook">
+                                aria-label="Logo Facebook" (mouseover)="fctMouseOver($event, 'facebook')"
+                                (focus)="fctMouseOver($event, 'facebook')" (mouseout)="fctMouseOut($event, '-gold')"
+                                (blur)="fctMouseOut($event, '-gold')">
                         </a>
                     </p>
                     <p class="content-info-socials-item">
                         <a href="https://twitter.com/Paris2024" target="_blank" rel="noopener noreferrer">
-                            <img src="assets/images/logo/twitter.png" alt="Logo Twitter" title="Logo Twitter"
-                                aria-label="Logo Twitter">
+                            <img src="assets/images/logo/twitter.svg" alt="Logo Twitter" title="Logo Twitter"
+                                aria-label="Logo Twitter" (mouseover)="fctMouseOver($event, 'twitter')"
+                                (focus)="fctMouseOver($event, 'twitter')" (mouseout)="fctMouseOut($event, '-gold')"
+                                (blur)="fctMouseOut($event, '-gold')">
                         </a>
                     </p>
                     <p class="content-info-socials-item">
                         <a href="https://www.instagram.com/paris2024" target="_blank" rel="noopener noreferrer">
-                            <img src="assets/images/logo/instagram.png" alt="Logo Instagram" title="Logo Instagram"
-                                aria-label="Logo Instagram">
+                            <img src="assets/images/logo/instagram.svg" alt="Logo Instagram" title="Logo Instagram"
+                                aria-label="Logo Instagram" (mouseover)="fctMouseOver($event,'instagram')"
+                                (focus)="fctMouseOver($event, 'instagram')" (mouseout)="fctMouseOut($event, '-gold')"
+                                (blur)="fctMouseOut($event, '-gold')">
                         </a>
                     </p>
                 </div>
                 <nav class="footer-nav">
-                    <a routerLink="/" aria-label="Accueil">Accueil</a>
-                    <a routerLink="/offers" aria-label="Offres">Offres</a>
-                    <a routerLink="/events" aria-label="Epreuves">Epreuves</a>
-                    <a routerLink="/contact" aria-label="Contact">Contact</a>
-                    <a routerLink="/" aria-label="Mentions légales">Mentions légales</a>
+                    <p class="footer-link">
+                        <a routerLink="/" aria-label="Accueil">Accueil</a>
+                    </p>
+                    <p class="footer-link">
+                        <a routerLink="/offers" aria-label="Offres">Offres</a>
+                    </p>
+                    <p class="footer-link">
+                        <a routerLink="/events" aria-label="Epreuves">Epreuves</a>
+                    </p>
+                    <p class="footer-link">
+                        <a routerLink="/contact" aria-label="Contact">Contact</a>
+                    </p>
+                    <p class="footer-link">
+                        <a routerLink="/" aria-label="Mentions légales">Mentions légales</a>
+                    </p>
                 </nav>
                 <div class="content-info-copyright">
                     <p aria-label="Copyright">
