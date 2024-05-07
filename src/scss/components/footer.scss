@@ -29,7 +29,7 @@ footer {
         @include mixins.media-max("desktop-down") {
             flex-direction: column;
             justify-content: center;
-            align-items: center; 
+            align-items: center;
         }
 
         .footer-left {
@@ -71,42 +71,46 @@ footer {
             .content-info {
                 display: flex;
                 flex-direction: column;
-                justify-content: space-evenly;
+                justify-content: center;
+                gap: 1.5rem;
                 align-items: center;
                 height: 95%;
-                padding-top: 0.75rem;
+
+                @include mixins.media-max("desktop-down") {
+                    gap: 0.8rem;
+                }
+
+                @include mixins.media-max("tablet-down") {
+                    gap: 1rem;
+                }
 
                 .content-info-socials {
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
                     align-items: center;
-                    gap: 0.5rem;
+                    gap: 1.5rem;
                     width: 100%;
-                    height: 2.5rem;
+                    height: 3rem;
                     text-align: center;
 
                     @include mixins.media-max("tablet-down") {
-                        height: 2rem;
+                        height: 2.5rem;
                     }
 
                     @include mixins.media-max("between-phone-tablet") {
-                        height: 1.5rem;
+                        height: 2rem;
                     }
 
-                    .content-info-socials-item img {
-                        height: 2.5rem;
-                        margin: 0 0.5rem;
-                        align-items: center;
-                        background-color: v.$footer-color;
-                        border-radius: 2rem;
+                    .content-info-socials-item {
 
-                        @include mixins.media-max("tablet-down") {
-                            height: 2rem;
-                        }
+                        height: 100%;
 
-                        @include mixins.media-max("between-phone-tablet") {
-                            height: 1.5rem;
+                        img {
+                            height: 100%;
+                            width: auto;
+                            align-items: center;
+                            border-radius: 50%;
                         }
                     }
                 }
@@ -126,14 +130,18 @@ footer {
                         font-size: 1.2rem;
                         text-decoration: none;
                         transition: color 0.3s;
+                        padding-bottom: 0.2rem;
 
                         @include mixins.media-max("tablet-down") {
                             font-size: 1rem;
                         }
 
                         &:hover {
-                            transition: 0.5s;
-                            font-size: 1.1rem;
+                            border-bottom: solid 0.15rem v.$footer-color;
+
+                            @include mixins.media-max("tablet-down") {
+                                border-bottom-width: 0.1rem;
+                            }
                         }
                     }
                 }
@@ -159,7 +167,7 @@ footer {
             align-content: center;
             width: 40%;
             height: 90%;
-            margin:auto;
+            margin: auto;
 
             @include mixins.media-max("desktop-down") {
                 width: 95%;
