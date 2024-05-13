@@ -1,0 +1,14 @@
+<div class="home-image">
+    <img src="assets/images/Pont-des-Arts-Paris.jpg" alt="Pont des Arts à Paris"
+        title="Pont des Arts - Paris" aria-label="Pont des Arts - Paris" />
+</div>
+<div class="home-text">
+    <h2>Nous vous souhaitons la bienvenue!</h2>
+    <p>Vous trouverez ici des informations sur les épreuves à venir</p>
+</div>
+<div class="home-events">
+    <h3>Événements à venir</h3>
+    <div class="home-events-list">
+        <app-event *ngFor="let eventItem of eventsArray" [event]="eventItem"></app-event>
+    </div>
+</div>
