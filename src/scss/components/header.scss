@@ -15,13 +15,17 @@
 
 header {
     width: 100%;
-    z-index: 999;
+    z-index: 998;
     vertical-align: middle;
     height: 7rem;
     margin: 0;
     font-family: Paris2024, sans-serif;
     background-color: v.$header-background-color;
     color: v.$header-color;
+
+    @include mixins.media-max("phone-down") {
+        height: 5rem;
+    }
 
     .flex-header {
         /*conteneur flex*/
@@ -73,17 +77,32 @@ header {
 
             @include mixins.media-max("phone-down") {
                 h1 {
-                    font-size: 1.5rem;
+                    font-size: 1.2rem;
                 }
+            }
+
+            @include mixins.media-max("phone-between") {
+                width: 40%;
+                h1 {
+                    font-size: 1rem;
+                }
+            }
+
+            @include mixins.media-max("phone-up") {
+                display: none;
             }
         }
 
         // Middle part : logo
         .logo {
-            height: 6rem;
+            height: 85%;
 
             img {
                 height: 100%;
+            }   
+
+            @include mixins.media-max("phone-up") {
+                margin-left: 1rem;
             }
         }
 
@@ -111,7 +130,7 @@ header {
                     display: none;
                     flex-direction: column;
                     background: v.$header-background-color;
-                    width: 10rem;
+                    width: auto;
                     height: auto;
                     padding: 1rem 0 0 0;
                     z-index: 999;
@@ -136,7 +155,7 @@ header {
 
                     @include mixins.media-max("desktop-up") {
                         font-size: 1.1rem;
-                        padding: 0.25rem 0.5rem;
+                        padding: 0.25rem 1.75rem;
                         border: none;
                         height: 2rem;
 
@@ -148,6 +167,21 @@ header {
                             border-left: v.$header-menu-color 0.3rem solid;
                             border-radius: 0.5rem;
                         }
+                    }
+
+                    @include mixins.media-max("phone-down") {
+                        font-size: 1rem;
+                        padding: 0.15rem 1rem;
+                    }
+
+                    @include mixins.media-max("phone-between") {
+                        font-size: 0.8rem;
+                        padding: 0.1rem 0.5rem;
+                    }
+
+                    @include mixins.media-max("phone-up") {
+                        font-size: 1rem;
+                        padding: 0.5rem 0.75rem;
                     }
                 }
             }
