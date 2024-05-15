@@ -37,4 +37,7 @@ export class OfferComponent {
     this.quantity = 1;
   }
 
+  scroll(){
+    document.getElementById("shoppingcart")?.scrollIntoView({behavior: "smooth"});
+  }
 }
