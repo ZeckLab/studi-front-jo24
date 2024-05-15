@@ -1,20 +1,36 @@
-.offres {
+@use "../mixins";
+
+.offers {
+    width: 100%;
 
     .presentation {
         text-align: center;
     }
 
     .offers-content {
-        display: flex;
-        gap: 0 5rem;
-        justify-content: space-evenly;
         margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 5rem;
+
+        @include mixins.media-max("phone-down") {
+            gap: 2rem;
+        }
+
+        @include mixins.media-max("phone-between") {
+            flex-direction: column;
+            align-items: center;
+        }
 
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
             grid-gap: 1.25rem;
             width: 50%;
+
+            @include mixins.media-max("phone-between") {
+                width: 90%;
+            }
         }
 
         .shoppingcart {
@@ -23,7 +39,7 @@
             align-items: center;
             justify-items: center;
             gap: 1rem;
-            width: 50%;
+            width: 15rem;
             margin: 0 auto;
         }
     }
