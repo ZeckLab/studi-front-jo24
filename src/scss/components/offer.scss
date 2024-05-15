@@ -1,57 +1,84 @@
+@use "../mixins";
+@use "../variables" as v;
+
 .card {
     display: grid;
-    grid-template-rows: max-content 200px 1fr;
+    grid-template-rows: max-content 12.5rem 1fr;
     border-radius: 0.5rem;
-    border: #141414 solid 0.2rem;
+    border: v.$primary-color solid 0.2rem;
+
+    @include mixins.media-max("phone-down") {
+        grid-template-rows: max-content 8rem 1fr;
+    }
 
     img {
         object-fit: contain;
         width: 100%;
         height: 100%;
+
+        @include mixins.media-max("phone-down") {
+            display: none;
+        }
     }
 
     header {
         text-align: center;
-        background-color: #141414;
-        color: #D6C278;
+        background-color: v.$primary-color;
+        color: v.$secondary-color;
         font-size: 1.1rem;
     }
 
     .content {
         padding: 1rem;
-        background-color: #f9f9f9;
+        background-color: v.$background-color;
         text-align: center;
+
+        @include mixins.media-max("phone-down") {
+            padding: 0.5rem;
+        }
     }
 
     .infos {
         display: flex;
         justify-content: space-between;
         padding: 0 1.5rem;
-        background-color: #141414;
-        color: #D6C278;
+        background-color: v.$primary-color;
+        color: v.$secondary-color;
         font-weight: bold;
+
+        @include mixins.media-max("phone-down") {
+            padding: 0 0.5rem;
+        }
     }
 
     footer {
-        background-color: #141414;
-        color: #D6C278;
+        background-color: v.$primary-color;
+        color: v.$secondary-color;
         display: flex;
         flex-direction: column;
-        border-top: #D6C278 solid 0.1rem;
+        border-top: v.$secondary-color solid 0.1rem;
         padding-top: 0.5rem;
 
         .offer-quantity {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end;
             padding: 0.5rem 0;
             gap: 0 1rem;
+
+            .quantity {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem 1rem;
+            }
         }
 
         button {
-            border: #D6C278 solid 0.15rem;
-            background-color: #141414;
-            color: #D6C278;
+            border: v.$secondary-color solid 0.15rem;
+            background-color: v.$primary-color;
+            color: v.$secondary-color;
             padding: 0.2rem 0.5rem;
             border-radius: 0.5rem;
             cursor: pointer;
@@ -60,22 +87,22 @@
         }
 
         button:hover {
-            background-color: #D6C278;
-            color: #141414;
+            background-color: v.$secondary-color;
+            color: v.$primary-color;
         }
 
         .btn-choice {
             width: 5rem;
-            margin: 0.5rem auto;
+            margin: 0.5rem;
             font-size: 1rem;
         }
 
         input {
             border: none;
             text-align: center;
-            border-bottom: #D6C278 solid 0.1rem;
-            background-color: #141414;
-            color: #D6C278;
+            border-bottom: v.$secondary-color solid 0.1rem;
+            background-color: v.$primary-color;
+            color: v.$secondary-color;
             padding: 0.2rem 0.5rem;
             font-weight: bold;
             width:3rem;
@@ -85,6 +112,36 @@
                 outline: none;
                 border-bottom-width: 0.2rem;
             }
+        }
+
+        .offer-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @include mixins.media-max("phone-down") {
+                flex-direction: column;
+                justify-content: end;
+            }
+            
+            .btn-shoppingcart {
+                display: none;
+                color: v.$secondary-color;
+                font-family: "Paris2024", sans-serif;
+                border: none;
+                border-radius: 0;
+                border-bottom: v.$secondary-color solid 0.15rem;
+
+                @include mixins.media-max("phone-between") {
+                    display: block;
+                }
+
+                &:hover {
+                    color: v.$secondary-color;
+                    background-color: v.$primary-color;
+                }
+            }
+            
         }
     }
 }

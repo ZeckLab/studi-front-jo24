@@ -20,14 +20,11 @@ export class OffersPageComponent implements OnInit{
     this.offersService.getAllVisible().subscribe({
       next: (offers: Offer[]) => {
         this.offersArray = offers;
-        console.log(this.offersArray);
       },
       error: (error) => {
         console.error(error);
       }
     });
-
-    console.log(this.choicesArray.length);
   }
 
   addChoice(choice: string) {
