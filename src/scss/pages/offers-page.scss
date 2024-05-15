@@ -1,0 +1,30 @@
+.offres {
+
+    .presentation {
+        text-align: center;
+    }
+
+    .offers-content {
+        display: flex;
+        gap: 0 5rem;
+        justify-content: space-evenly;
+        margin-top: 2rem;
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+            grid-gap: 1.25rem;
+            width: 50%;
+        }
+
+        .shoppingcart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-items: center;
+            gap: 1rem;
+            width: 50%;
+            margin: 0 auto;
+        }
+    }
+}
