@@ -1,0 +1,90 @@
+.card {
+    display: grid;
+    grid-template-rows: max-content 200px 1fr;
+    border-radius: 0.5rem;
+    border: #141414 solid 0.2rem;
+
+    img {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+    }
+
+    header {
+        text-align: center;
+        background-color: #141414;
+        color: #D6C278;
+        font-size: 1.1rem;
+    }
+
+    .content {
+        padding: 1rem;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+
+    .infos {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1.5rem;
+        background-color: #141414;
+        color: #D6C278;
+        font-weight: bold;
+    }
+
+    footer {
+        background-color: #141414;
+        color: #D6C278;
+        display: flex;
+        flex-direction: column;
+        border-top: #D6C278 solid 0.1rem;
+        padding-top: 0.5rem;
+
+        .offer-quantity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 0;
+            gap: 0 1rem;
+        }
+
+        button {
+            border: #D6C278 solid 0.15rem;
+            background-color: #141414;
+            color: #D6C278;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: "Paris2024", sans-serif;
+        }
+
+        button:hover {
+            background-color: #D6C278;
+            color: #141414;
+        }
+
+        .btn-choice {
+            width: 5rem;
+            margin: 0.5rem auto;
+            font-size: 1rem;
+        }
+
+        input {
+            border: none;
+            text-align: center;
+            border-bottom: #D6C278 solid 0.1rem;
+            background-color: #141414;
+            color: #D6C278;
+            padding: 0.2rem 0.5rem;
+            font-weight: bold;
+            width:3rem;
+            font-size: 1.1rem;
+
+            &:focus {
+                outline: none;
+                border-bottom-width: 0.2rem;
+            }
+        }
+    }
+}

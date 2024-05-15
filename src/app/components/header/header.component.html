@@ -4,7 +4,7 @@
         <div class="logo"><img src="assets/images/logo/logo_jo_2024.svg" alt="logo"></div>
 
         <nav role="navigation" aria-label="Navigation principale">
-            <div class="burger" (click)="toggleMenu()">
+            <div class="burger" (click)="toggleMenu()" (keypress)="toggleMenu()">
                 <p>☰</p>
             </div>
             <div class="main_pages" [class.is-open]="isMenuOpen">

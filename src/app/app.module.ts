@@ -7,6 +7,8 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { EventComponent } from './components/event/event.component';
+import { OfferComponent } from './components/offer/offer.component';
+import { OffersPageComponent} from './components/offers-page/offers-page.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -17,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
         HeaderComponent,
         FooterComponent,
         EventComponent,
+        OfferComponent,
+        OffersPageComponent,
         ],
     
     providers: [],
