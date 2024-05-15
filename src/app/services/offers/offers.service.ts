@@ -39,16 +39,16 @@ export class OffersService {
 
   getAllVisible() {
     return new Observable<Offer[]>(observer => {
-      console.log(this.endpointURL + "/visible");
       this.httpClient.get(this.endpointURL + "/visible").subscribe({
         next: (data: any) => {
           const offers = [];
-          console.log(data);
+
           for(const jsonOffer of data){
             const offer = new Offer();
             offer.loadfromJson(jsonOffer);
             offers.push(offer);
           }
+          
           observer.next(offers);
           observer.complete();
         },
