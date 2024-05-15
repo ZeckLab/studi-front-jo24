@@ -1,0 +1,17 @@
+<section class="offres">
+    <h2 class="presentation">Bienvenue sur la page des offres</h2>
+    <p class="presentation">Vous pouvez sélectionner autant d'offres que vous voulez!</p>
+    <p class="presentation">Le nombre de participant sera affiché sur un billet unique à la fin de votre achat!</p>
+
+    <div class="offers-content">
+        <div class="cards">
+            <app-offer *ngFor="let offerItem of offersArray" [offer]="offerItem" (choiceEvent)="addChoice($event)"></app-offer>
+        </div>
+        <div class="shoppinchart">
+            <h3>Ma simulation de panier</h3>
+            <p *ngFor="let choice of choicesArray">{{choice}}</p>
+            <p *ngIf="choicesArray.length === 0">Votre panier est vide</p>
+            <p>Total : {{total}} €</p>
+        </div>
+    </div>
+</section>
