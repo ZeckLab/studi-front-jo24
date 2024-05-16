@@ -29,7 +29,6 @@ export class OffersService {
           observer.complete();
         },
         error: error => {
-        console.log(error);
         observer.error(error);
         observer.complete();
         }
@@ -39,7 +38,8 @@ export class OffersService {
 
   getAllVisible() {
     return new Observable<Offer[]>(observer => {
-      this.httpClient.get(this.endpointURL + "/visible").subscribe({
+      let visible_order_by = this.endpointURL + "/visible?c=nb_people&order=asc";
+      this.httpClient.get(visible_order_by).subscribe({
         next: (data: any) => {
           const offers = [];
 
