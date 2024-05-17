@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Offer } from '../../models/offer.model';
+import { ShoppingCartItem } from '../../models/shoppingCartItem.model';
 
 @Component({
   selector: 'app-offer',
@@ -12,7 +13,7 @@ export class OfferComponent {
 
   @Input() offer: Offer = new Offer();
   @Input() quantity: number = 1;
-  @Output() choiceEvent = new EventEmitter<string>();
+  @Output() choiceEvent = new EventEmitter<ShoppingCartItem>();
   
 
   changeOffer(valueStr: string) {
@@ -33,7 +34,7 @@ export class OfferComponent {
   }
 
   choiceOffer() {
-    this.choiceEvent.emit(this.offer.title + " - " + this.quantity + " x " + this.offer.price + " € = " + this.quantity * this.offer.price + " €");
+    this.choiceEvent.emit({offer: this.offer, quantity: this.quantity});
     this.quantity = 1;
   }
 

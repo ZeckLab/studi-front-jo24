@@ -10,9 +10,9 @@ import { EventComponent } from './components/event/event.component';
 import { OfferComponent } from './components/offer/offer.component';
 import { OffersPageComponent} from './components/offers-page/offers-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ShoppingCartComponent } from "./components/shopping-cart/shopping-cart.component";
 
 @NgModule({
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule],
     declarations: [
         AppComponent,
         HomeComponent,
@@ -21,10 +21,10 @@ import { HttpClientModule } from '@angular/common/http';
         EventComponent,
         OfferComponent,
         OffersPageComponent,
-        ],
-    
+    ],
     providers: [],
     bootstrap: [AppComponent],
+    imports: [BrowserModule, AppRoutingModule, HttpClientModule, ShoppingCartComponent]
 })
 export class AppModule {
 }

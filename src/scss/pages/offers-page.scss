@@ -1,46 +1,63 @@
 @use "../mixins";
 
-.offers {
+.offers-presentation {
     width: 100%;
+    text-align: center;
+}
 
-    .presentation {
-        text-align: center;
+.offers-content {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: [offers] auto [basket] 27rem;
+    gap: 5rem;
+    justify-items: center;
+
+    @include mixins.media-max("widescreen-up") {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
     }
 
-    .offers-content {
-        margin-top: 2rem;
+    .cards {
+        grid-column: offers;
         display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
         justify-content: center;
-        gap: 5rem;
 
-        @include mixins.media-max("phone-down") {
-            gap: 2rem;
-        }
+        .card {
+            width: 18rem;
 
-        @include mixins.media-max("phone-between") {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-            grid-gap: 1.25rem;
-            width: 50%;
-
-            @include mixins.media-max("phone-between") {
-                width: 90%;
+            @include mixins.media-max("phone-up") {
+                max-width: 14rem;
             }
         }
+    }
 
-        .shoppingcart {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-items: center;
-            gap: 1rem;
-            width: 15rem;
-            margin: 0 auto;
+    .shoppingcart {
+        grid-column: basket;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+        margin: 0 auto;
+
+        @include mixins.media-max("widescreen-up") {
+            min-height: 10rem;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+            width: 100%;
+        }
+
+        p {
+            margin-top: 1rem;
         }
     }
 }
