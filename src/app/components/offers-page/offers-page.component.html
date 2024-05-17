@@ -1,17 +1,21 @@
-<section class="offers">
-    <h2 class="presentation">Bienvenue sur la page des offres</h2>
-    <p class="presentation">Vous pouvez sélectionner autant d'offres que vous voulez!</p>
-    <p class="presentation">Le nombre de participant sera affiché sur un billet unique à la fin de votre achat!</p>
+<section class="offers-presentation">
+    <h2>Bienvenue sur la page des offres</h2>
+    <p>Vous pouvez sélectionner autant d'offres que vous voulez!</p>
+    <p>Le nombre de participant sera affiché sur un billet unique à la fin de votre achat!</p>
+</section>
 
-    <div class="offers-content">
-        <div class="cards">
-            <app-offer *ngFor="let offerItem of offersArray" [offer]="offerItem" (choiceEvent)="addChoice($event)"></app-offer>
-        </div>
-        <div id="shoppingcart" class="shoppinchart">
-            <h3>Ma simulation de panier</h3>
-            <p *ngFor="let choice of choicesArray">{{choice}}</p>
-            <p *ngIf="choicesArray.length === 0">Votre panier est vide</p>
-            <p>Total : {{total}} €</p>
-        </div>
+<section class="offers-content">
+    <div class="cards">
+        <app-offer *ngFor="let offerItem of offersArray" [offer]="offerItem"
+            (choiceEvent)="addChoice($event)" class="card"></app-offer>
+    </div>
+    <div id="shoppingcart" class="shoppingcart">
+        <h3>Mon panier</h3>
+        @if (itemsArray.length > 0) {
+        <app-shopping-cart [itemsArray]="itemsArray" (removeItemEvent)="removeItem($event)" />
+        }
+        @else {
+        <p>Votre panier est vide</p>
+        }
     </div>
 </section>

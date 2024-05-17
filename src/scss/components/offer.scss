@@ -119,7 +119,7 @@
             justify-content: center;
             align-items: center;
 
-            @include mixins.media-max("phone-down") {
+            @include mixins.media-max("widescreen-up") {
                 flex-direction: column;
                 justify-content: end;
             }
@@ -132,7 +132,7 @@
                 border-radius: 0;
                 border-bottom: v.$secondary-color solid 0.15rem;
 
-                @include mixins.media-max("phone-between") {
+                @include mixins.media-max("widescreen-up") {
                     display: block;
                 }
 
