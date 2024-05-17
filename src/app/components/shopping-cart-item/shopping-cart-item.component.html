@@ -1,0 +1,15 @@
+<div class="item">
+    <div class="item-name">{{item.offer.title}}</div>
+    <div class="item-price">{{ item.offer.price| currency:'EUR' }} x</div>
+    <div class="item-qty">
+        <button (click)="decreaseQuantity()" class="btn-down">-</button>
+        <input type="text" [(ngModel)]="item.quantity" />
+        <button (click)="increaseQuantity()" class="btn-up">+</button>
+    </div>
+    <div class="item-total"> = {{ item.offer.price * item.quantity | currency:'EUR' }}</div>
+    <div class="item-remove">
+        <button class="btn-remove" (click)="removeItem()">
+            <img src="assets/images/shopping-cart/trash.png" alt="Remove" />
+        </button>
+    </div>
+</div>
