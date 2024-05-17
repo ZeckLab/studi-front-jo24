@@ -120,6 +120,7 @@
             align-items: center;
 
             @include mixins.media-max("widescreen-up") {
+
                 flex-direction: column;
                 justify-content: end;
             }

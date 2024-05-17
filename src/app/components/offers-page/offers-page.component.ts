@@ -28,6 +28,7 @@ export class OffersPageComponent implements OnInit{
     });
   }
 
+
   addChoice(choice: ShoppingCartItem) {
     let index = this.itemsArray.findIndex(item => item.offer.title === choice.offer.title);
     if(index !== -1) {
