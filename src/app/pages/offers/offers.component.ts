@@ -5,7 +5,7 @@ import { ShoppingCartItem } from '../../models/shoppingCartItem.model';
 
 @Component({
   selector: 'app-offers-page',
-  templateUrl: './offers-page.component.html',
+  templateUrl: './offers.component.html',
   styleUrl: '/src/scss/pages/offers-page.scss'
 })
 
