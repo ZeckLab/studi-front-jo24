@@ -10,25 +10,46 @@ $button-fontweight: 700 !default;
 $button-border-radius: 2rem !default;
 
 a {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    //height: 50%;
-    //width: auto;
     text-decoration: none;
     text-transform: uppercase;
     color: $button-font-color;
     background-color: $button-background-color;
     font-size: 1.1rem;
-    //margin: 0 0.25rem;
     padding: $button-padding;
     font-weight: $button-fontweight;
     border: $button-border-color 0.1rem solid;
     border-radius: $button-border-radius;
-    //flex-shrink: 0;
 
     &:hover {
         transition: 0.5s;
+        background-color: $button-background-color-hover;
+        color: $button-font-color-hover;
+        border: $button-border-color-hover 0.1rem solid;
+    }
+}
+
+button {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    color: $button-font-color;
+    font-family: Paris2024, sans-serif;
+    background-color: $button-background-color;
+    font-size: 1.1rem;
+    padding: $button-padding;
+    font-weight: $button-fontweight;
+    border: $button-border-color 0.1rem solid;
+    border-radius: $button-border-radius;
+
+    &:hover {
+        transition: 0.5s;
+        cursor: pointer;
         background-color: $button-background-color-hover;
         color: $button-font-color-hover;
         border: $button-border-color-hover 0.1rem solid;

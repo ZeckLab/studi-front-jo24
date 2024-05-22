@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { User } from '../../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthenticateService {
   constructor(private httpClient: HttpClient) {
   }
 
+  // Check if the email exists in the database
   checkEmail(email: string){
     return new Observable<boolean>(observer => {
       this.httpClient.get(this.endpointURL + 'login/' + email).subscribe({
@@ -43,6 +45,35 @@ export class AuthenticateService {
     return new Observable<boolean>(observer => {
       this.httpClient.post(this.endpointURL + 'signup', registerUser).subscribe({
         next: (data: any) => {
+          observer.next(true);
+          observer.complete();
+        },
+        error: (error) => {
+          observer.error(error);
+          observer.complete();
+        }
+      });
+    });
+  }
+
+  // Login the user
+  loginUser(email: string, password: string){
+    // Create the user object to send to the server X-WWW-FORM-URLENCODED
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    const body = new URLSearchParams();
+    body.set('username', email);
+    body.set('password', password);
+    body.set('grant_type', 'password');
+    console.log("Nous sommes dans le login user");
+
+    return new Observable<boolean>(observer => {
+      this.httpClient.post(this.endpointURL + 'login', body, {headers}).subscribe({
+        next: (data: any) => {
+          localStorage.setItem('access_token', data.access_token);
+          localStorage.setItem('expires_delta', data.refresh_token);
+          console.log(data);
           observer.next(true);
           observer.complete();
         },

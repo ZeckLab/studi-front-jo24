@@ -8,12 +8,17 @@ import { AuthenticateService } from '../../services/authenticate/authenticate.se
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './sign-log-in.component.html',
-  styleUrl: '/src/scss/pages/sign-log-in.scss'
+  styleUrl: '/src/scss/components/sign-log-in.scss'
 })
+
 export class SignLogInComponent {
   loginForm: FormGroup;
   userExists: boolean | null = null; // null: not checked, true: exists, false: doesn't exist
   emailVerified = false; // to check if the email has been verified
+  justregistered = false;
+  authSuccess = false;
+  infoTitle = '';
+  infoMessage = '';
 
 
   constructor(private formBuilder: FormBuilder, private authenticateService: AuthenticateService) {
@@ -27,14 +32,16 @@ export class SignLogInComponent {
 
     // if the email is modified, reset the form because the email must be verified again
     this.loginForm.get('email')?.valueChanges.subscribe(value => {
-      if (this.emailVerified) {
+      if (this.emailVerified && !this.authSuccess) {
         this.resetForm();
       }
     });
+
+    this.information();
   }
 
   get emailFC() {
-    return this.loginForm.get('email') as FormControl<string>;
+    return this.loginForm.controls['email'] as FormControl<string>;
   }
 
   get passwordFC() {
@@ -53,6 +60,22 @@ export class SignLogInComponent {
     return this.loginForm.get('phone') as FormControl<string>;
   }
 
+  information() {
+    if (this.emailVerified === false){
+      this.infoTitle = "Vérification d'email";
+      this.infoMessage = "Veuillez saisir votre email";
+    } else if (this.userExists === true && this.authSuccess === false) {
+      this.infoTitle = "Connexion";
+      this.infoMessage = (this.justregistered === false) ? "Veuillez saisir votre mot de passe" : "Vous êtes inscrit, veuillez vous connecter";
+    } else if (this.userExists === true && this.authSuccess === true) {
+      this.infoTitle = "Connexion résussie";
+      this.infoMessage = "Veuillez fermer cette boîte de dialogue";
+    } else {
+      this.infoTitle = "Inscription";
+      this.infoMessage = "Veuillez saisir les informations demandées";
+    }
+  }
+
 
   emailValidator(control: AbstractControl): ValidationErrors | null {
     const emailRegexp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -65,17 +88,6 @@ export class SignLogInComponent {
   }
 
 
-  /*isPasswordValid(): boolean {
-    const password = this.loginForm.get('password')?.value;
-    if (!password) return false;
-
-    // Utilisation d'une expression régulière pour la validation du mot de passe
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
-
-    return passwordRegex.test(password);
-  }*/
-
-
   checkEmail()
   {
     if (this.loginForm.get('email')?.invalid) {
@@ -86,6 +98,7 @@ export class SignLogInComponent {
     this.authenticateService.checkEmail(this.loginForm.get('email')?.value).subscribe({
       next: result => {
         this.userExists = result;
+        this.emailVerified = true;
         this.displayForm();
       },
       error: (error) => {
@@ -99,7 +112,7 @@ export class SignLogInComponent {
   {
     if (this.userExists) {
       // if the user exists, only the password is required
-      this.emailFC.setValidators([Validators.required]);
+      this.passwordFC.setValidators([Validators.required]);
     } else {
       // if the user doesn't exist, all fields are required
       this.passwordFC.setValidators([Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]);
@@ -109,7 +122,7 @@ export class SignLogInComponent {
     }
 
     this.loginForm.updateValueAndValidity();
-    this.emailVerified = true;
+    this.information();
   }
 
 
@@ -125,19 +138,36 @@ export class SignLogInComponent {
     this.lastNameFC.clearValidators();
     this.phoneFC.clearValidators();
     this.loginForm.updateValueAndValidity();
+
+    this.information();
   }
 
 
   onSubmit() {
     if (this.userExists) {
       // Connexion
-      console.log('Connexion:', this.loginForm.value);
+      console.log('Connexion:', "nous sommes dans la connexion");
+      this.authenticateService.loginUser(this.loginForm.value.email, this.loginForm.value.password).subscribe({
+        next: result => {
+          if (result) {
+            this.authSuccess = true;
+            this.information();
+          } else {
+            console.error('Erreur lors de la connexion');
+          }
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
     } else {
       // Inscription
       this.authenticateService.signupUser(this.loginForm.value).subscribe({
         next: result => {
           if (result) {
-            console.log('Inscription réussie:', this.loginForm.value);
+            this.justregistered = true;
+            this.userExists = true;
+            this.displayForm();
           } else {
             console.error('Erreur lors de l\'inscription');
           }
