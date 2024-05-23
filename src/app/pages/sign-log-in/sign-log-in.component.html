@@ -1,8 +1,9 @@
-<div [formGroup]="loginForm" class="container" [ngClass]="{'invalid' : this.loginForm.invalid}">
+<div [formGroup]="loginForm" class="container" [ngClass]="{'invalid' : this.loginForm.invalid, 'valid' : this.loginForm.valid}">
     <div id="info" class="info">
         <h2>{{infoTitle}}</h2>
         <p>{{infoMessage}}</p>
     </div>
+<!-- If the authentification is succeded, don't display the form, just the div.info -->
 @if(authSuccess === false){
     <div class="email-container">
         <label for="email">Email:</label>

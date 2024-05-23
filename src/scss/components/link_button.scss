@@ -29,7 +29,14 @@ a {
         background-color: $button-background-color-hover;
         color: $button-font-color-hover;
         border: $button-border-color-hover 0.1rem solid;
+        cursor: pointer;
     }
+}
+
+a.selected {
+    background-color: $button-background-color-hover;
+    color: $button-font-color-hover;
+    border: $button-border-color-hover 0.1rem solid;
 }
 
 button {
