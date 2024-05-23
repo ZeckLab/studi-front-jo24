@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalService } from './services/modal/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'studi-front-jo24';
+
+  constructor(protected modalService: ModalService) {}
 }

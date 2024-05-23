@@ -1,4 +1,10 @@
-<div [formGroup]="loginForm" class="container">
+<div [formGroup]="loginForm" class="container" [ngClass]="{'invalid' : this.loginForm.invalid, 'valid' : this.loginForm.valid}">
+    <div id="info" class="info">
+        <h2>{{infoTitle}}</h2>
+        <p>{{infoMessage}}</p>
+    </div>
+<!-- If the authentification is succeded, don't display the form, just the div.info -->
+@if(authSuccess === false){
     <div class="email-container">
         <label for="email">Email:</label>
         <input id="email" formControlName="email" type="email" placeholder="test@gmail.com" required>
@@ -11,6 +17,7 @@
                 [disabled]="emailFC.invalid">Vérifier</button>
         </div>
     </div>
+
     <!-- if the user doesn't exist, then display the register form-->
     @if (userExists === false){
     <div class="firstname-container">
@@ -37,6 +44,7 @@
         </div>
     </div>
     }
+
     <!-- Display the password field -->
     @if (emailVerified === true){
     <div class="password-container">
@@ -55,4 +63,5 @@
         <button (click)="onSubmit()" class="submit-button">{{userExists ? 'Se connecter' : 'S\'inscrire'}}</button>
     </div>
     }
+}
 </div>

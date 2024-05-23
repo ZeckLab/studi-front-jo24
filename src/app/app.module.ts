@@ -11,6 +11,9 @@ import { OfferComponent } from './components/offer/offer.component';
 import { OffersPageComponent} from './pages/offers/offers.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShoppingCartComponent } from "./components/shopping-cart/shopping-cart.component";
+import { SignLogInComponent } from './pages/sign-log-in/sign-log-in.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { RouterLinkActive } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -21,10 +24,11 @@ import { ShoppingCartComponent } from "./components/shopping-cart/shopping-cart.
         EventComponent,
         OfferComponent,
         OffersPageComponent,
+        ModalComponent
     ],
     providers: [],
     bootstrap: [AppComponent],
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule, ShoppingCartComponent]
+    imports: [BrowserModule, AppRoutingModule, HttpClientModule, ShoppingCartComponent, SignLogInComponent, RouterLinkActive]
 })
 export class AppModule {
 }

@@ -8,7 +8,7 @@
     $button-background-color: v.$header-menu-background-color,
     $button-background-color-hover: v.$header-menu-background-color-hover,
     $button-fontsize: 1.1rem,
-    $button-padding: 0.15rem 1rem,
+    $button-padding: 1.15rem 1rem,
     $button-fontweight: 700,
     $button-border-radius: 2rem
 );
@@ -50,19 +50,11 @@ header {
                 font-size: 3rem;
             }
 
-            @include mixins.media-max("widescren-up") {
+            @include mixins.media-max("desktop-down") {
                 width: 40%;
 
                 h1 {
                     font-size: 2.5rem;
-                }
-            }
-
-            @include mixins.media-max("desktop-down") {
-                width: 35%;
-
-                h1 {
-                    font-size: 2rem;
                 }
             }
 
@@ -71,7 +63,15 @@ header {
                 width: 50%;
 
                 h1 {
-                    font-size: 1.8rem;
+                    font-size: 2rem;
+                }
+            }
+
+            @include mixins.media-max("tablet-up") {
+                width: 45%;
+
+                h1 {
+                    font-size: 1.6rem;
                 }
             }
 
@@ -118,6 +118,10 @@ header {
                 align-items: flex-end;
                 margin:0;
             }
+
+            @include mixins.media-max("phone-up") {
+                width: 75%;
+            }
         
             // Display links horizontally
             .main_pages {
@@ -130,58 +134,58 @@ header {
                     display: none;
                     flex-direction: column;
                     background: v.$header-background-color;
-                    width: auto;
+                    width:auto;
                     height: auto;
                     padding: 1rem 0 0 0;
                     z-index: 999;
                 }
         
                 // display the links as a button
-                a {
+                a, div button {
                     height: 50%;
                     width: auto;
-                    margin: 0 0.25rem;
+                    margin: 0 0.15rem;
                     flex-shrink: 0;
-
-                    @include mixins.media-max("widescreen-up") {
-                        font-size: 1rem;
-                        padding: 0.15rem 0.75rem;
-                    }
 
                     @include mixins.media-max("desktop-down") {
                         font-size: 1rem;
-                        padding: 0.15rem 0.5rem;
+                        padding: 1.15rem 0.75rem;
                     }
 
                     @include mixins.media-max("desktop-up") {
                         font-size: 1.1rem;
-                        padding: 0.25rem 1.75rem;
-                        border: none;
+                        padding: 1.25rem 1rem;
+                        border-right: v.$header-menu-background-color 0.5rem solid;
+                        border-left: v.$header-menu-background-color 0.5rem solid;
+                        border-bottom: none;
+                        border-top: none;
+                        border-radius: 0;
                         height: 2rem;
+                        margin: 0;
+                        width: 100%;
 
-                        &:hover {
+                        &:hover, &:active {
                             border: none;
                             background-color: v.$header-menu-background-color;
                             color: v.$header-menu-color;
-                            border-right: v.$header-menu-color 0.3rem solid;
-                            border-left: v.$header-menu-color 0.3rem solid;
-                            border-radius: 0.5rem;
+                            border-right: v.$header-menu-color 0.5rem solid;
+                            border-left: v.$header-menu-color 0.5rem solid;
                         }
                     }
 
                     @include mixins.media-max("phone-down") {
-                        font-size: 1rem;
-                        padding: 0.15rem 1rem;
+                        font-size: 0.95rem;
+                        padding: 1.15rem 0.9rem;
                     }
 
                     @include mixins.media-max("phone-between") {
                         font-size: 0.8rem;
-                        padding: 0.1rem 0.5rem;
+                        padding: 1.1rem 0.65rem;
                     }
 
                     @include mixins.media-max("phone-up") {
-                        font-size: 1rem;
-                        padding: 0.5rem 0.75rem;
+                        font-size: 0.9rem;
+                        padding: 1.15rem 0.75rem;
                     }
                 }
             }
