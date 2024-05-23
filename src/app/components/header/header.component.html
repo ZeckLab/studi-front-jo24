@@ -1,6 +1,8 @@
 <header>
     <div class="flex-header">
-        <div class="title"><h1>Jeux Olympiques 2024</h1></div>
+        <div class="title">
+            <h1>Jeux Olympiques 2024</h1>
+        </div>
         <div class="logo"><img src="assets/images/logo/logo_jo_2024.svg" alt="logo"></div>
 
         <nav role="navigation" aria-label="Navigation principale">
@@ -8,10 +10,11 @@
                 <p>☰</p>
             </div>
             <div class="main_pages" [class.is-open]="isMenuOpen">
-                <a routerLink="/" aria-label="Accueil" (click)="toggleMenu()">Accueil</a>
-                <a routerLink="/offers" aria-label="Offres" (click)="toggleMenu()">Offres</a>
-                <a routerLink="/events" aria-label="Epreuves" (click)="toggleMenu()">Epreuves</a>
-                <button type="button" (click)="modalService.open('modal-1')" class="btn-menu" aria-label="Se Connecter">Se connecter</button>
+                <a routerLink="/" routerLinkActive="selected" aria-label="Accueil" (click)="toggleMenu()" [routerLinkActiveOptions]="{ exact : true}">Accueil</a>
+                <a routerLink="/offers" routerLinkActive="selected" aria-label="Offres" (click)="toggleMenu()">Offres</a>
+                <a routerLink="/events" routerLinkActive="selected" aria-label="Epreuves" (click)="toggleMenu()">Epreuves</a>
+                <a *ngIf="!userIsAuthenticated" (click)="modalService.open('modal-1')">Se connecter</a>
+                <a *ngIf="userIsAuthenticated" (click)="logout()">Se déconnecter</a>
             </div>
         </nav>
     </div>

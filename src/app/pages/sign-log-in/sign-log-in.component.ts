@@ -22,6 +22,7 @@ export class SignLogInComponent {
 
 
   constructor(private formBuilder: FormBuilder, private authenticateService: AuthenticateService) {
+    // create the form
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, this.emailValidator]],
       password: [''],
@@ -37,6 +38,7 @@ export class SignLogInComponent {
       }
     });
 
+    // display the div.info according to the state of the form (email verified, user exists, auth success)
     this.information();
   }
 
@@ -61,6 +63,7 @@ export class SignLogInComponent {
   }
 
   information() {
+    // display the div.info according to the state of the form (email verified, user exists, auth success)
     if (this.emailVerified === false){
       this.infoTitle = "Vérification d'email";
       this.infoMessage = "Veuillez saisir votre email";
@@ -88,6 +91,7 @@ export class SignLogInComponent {
   }
 
 
+  // check if the email exists before displaying the form
   checkEmail()
   {
     if (this.loginForm.get('email')?.invalid) {
@@ -107,7 +111,7 @@ export class SignLogInComponent {
     });
   }
 
-
+  // display the form according to the state of the user
   displayForm()
   {
     if (this.userExists) {
@@ -143,13 +147,14 @@ export class SignLogInComponent {
   }
 
 
+  // submit the form
   onSubmit() {
+    // Authentification (Login)
     if (this.userExists) {
-      // Connexion
-      console.log('Connexion:', "nous sommes dans la connexion");
       this.authenticateService.loginUser(this.loginForm.value.email, this.loginForm.value.password).subscribe({
         next: result => {
           if (result) {
+            // if the user is authenticated, display the success message
             this.authSuccess = true;
             this.information();
           } else {
@@ -161,10 +166,11 @@ export class SignLogInComponent {
         }
       });
     } else {
-      // Inscription
+      // Inscription (Signup)
       this.authenticateService.signupUser(this.loginForm.value).subscribe({
         next: result => {
           if (result) {
+            // if the user is registered, display the success message
             this.justregistered = true;
             this.userExists = true;
             this.displayForm();
