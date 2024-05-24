@@ -1,10 +1,15 @@
+<div class="btn-close">
+    <button (click)="onClose()" (mousedown)="onClose()">
+        <img src="assets/images/common/close.png" alt="close">
+    </button>
+</div>
 <div [formGroup]="loginForm" class="container" [ngClass]="{'invalid' : this.loginForm.invalid, 'valid' : this.loginForm.valid}">
     <div id="info" class="info">
         <h2>{{infoTitle}}</h2>
         <p>{{infoMessage}}</p>
     </div>
 <!-- If the authentification is succeded, don't display the form, just the div.info -->
-@if(authSuccess === false){
+@if(step != 'success'){ 
     <div class="email-container">
         <label for="email">Email:</label>
         <input id="email" formControlName="email" type="email" placeholder="test@gmail.com" required>
@@ -13,13 +18,13 @@
             <div *ngIf="emailFC.errors?.['email']">L'email n'est pas valide.</div>
         </div>
         <div class="actions-container">
-            <button type="button" *ngIf="!emailVerified" (click)="checkEmail()"
+            <button type="button" *ngIf="step === 'checkEmail'" (click)="checkEmail()" 
                 [disabled]="emailFC.invalid">Vérifier</button>
         </div>
     </div>
 
-    <!-- if the user doesn't exist, then display the register form-->
-    @if (userExists === false){
+    <!-- if the user doesn't exist, then display the register form to signup -->
+    @if (step === 'signup'){
     <div class="firstname-container">
         <label for="firstName">Prénom:</label>
         <input id="firstName" formControlName="firstName" type="text" placeholder="Saisir votre prénom" required>
@@ -46,21 +51,22 @@
     }
 
     <!-- Display the password field -->
-    @if (emailVerified === true){
+    @if (['login','signup'].includes(step)){
     <div class="password-container">
         <label for="password">Mot de passe:</label>
         <input id="password" formControlName="password" type="password" placeholder="Saisir votre mot de passe"
             required>
-        <div *ngIf="!userExists && passwordFC.invalid && (passwordFC.touched || passwordFC.dirty)" class="error">
+        <div *ngIf="step === 'signup' && passwordFC.invalid && (passwordFC.touched || passwordFC.dirty)" class="error">
             <div *ngIf="passwordFC.errors?.['required']">Le mot de passe est requis</div>
             <div *ngIf="passwordFC.errors?.['pattern']">
                 Le mot de passe doit contenir au moins 8 caractères alphanumériques, dont au moins une
                 lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial.
             </div>
         </div>
+        <div *ngIf="errorMessage != '' && passwordFC.invalid" class="errorServer">{{errorMessage}}</div>
     </div>
     <div class="actions-container">
-        <button (click)="onSubmit()" class="submit-button">{{userExists ? 'Se connecter' : 'S\'inscrire'}}</button>
+        <button (click)="onSubmit()" class="submit-button">{{step==='login' ? 'Se connecter' : 'S\'inscrire'}}</button>
     </div>
     }
 }

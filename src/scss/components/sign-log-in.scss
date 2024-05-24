@@ -71,6 +71,11 @@
         display: flex;
         justify-content: center;
     }
+
+    .errorServer {
+        color: v.$login-form-message-color;
+        font-size: 0.9rem;
+    }
 }
 
 .invalid {

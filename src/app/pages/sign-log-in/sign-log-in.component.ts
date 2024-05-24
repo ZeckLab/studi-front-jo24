@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { AuthenticateService } from '../../services/authenticate/authenticate.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorTranslation } from '../../services/constantsError';
+import { ConstantsInfo } from '../../constantsInfo';
 
 @Component({
   selector: 'app-sign-log-in',
@@ -12,13 +15,16 @@ import { AuthenticateService } from '../../services/authenticate/authenticate.se
 })
 
 export class SignLogInComponent {
+  @Input() idModal: string = '';
+  @Output() close = new EventEmitter<void>();
   loginForm: FormGroup;
-  userExists: boolean | null = null; // null: not checked, true: exists, false: doesn't exist
-  emailVerified = false; // to check if the email has been verified
-  justregistered = false;
-  authSuccess = false;
-  infoTitle = '';
-  infoMessage = '';
+  step = 'checkEmail';                  // step of the form - checkEmail, login, signup, badpassword, success
+
+  infoTitle = '';                       // title of the div.info
+  infoMessage = '';                     // message of the div.info
+
+  errorMessage = '';
+  errorMessageValidators = ErrorTranslation.errorMessageValidators;
 
 
   constructor(private formBuilder: FormBuilder, private authenticateService: AuthenticateService) {
@@ -33,13 +39,13 @@ export class SignLogInComponent {
 
     // if the email is modified, reset the form because the email must be verified again
     this.loginForm.get('email')?.valueChanges.subscribe(value => {
-      if (this.emailVerified && !this.authSuccess) {
+      if (['login','signup'].includes(this.step)) {
         this.resetForm();
       }
     });
 
     // display the div.info according to the state of the form (email verified, user exists, auth success)
-    this.information();
+    this.setInfos(ConstantsInfo.infoMessageLogin.checkEmail);
   }
 
   get emailFC() {
@@ -62,21 +68,9 @@ export class SignLogInComponent {
     return this.loginForm.get('phone') as FormControl<string>;
   }
 
-  information() {
-    // display the div.info according to the state of the form (email verified, user exists, auth success)
-    if (this.emailVerified === false){
-      this.infoTitle = "Vérification d'email";
-      this.infoMessage = "Veuillez saisir votre email";
-    } else if (this.userExists === true && this.authSuccess === false) {
-      this.infoTitle = "Connexion";
-      this.infoMessage = (this.justregistered === false) ? "Veuillez saisir votre mot de passe" : "Vous êtes inscrit, veuillez vous connecter";
-    } else if (this.userExists === true && this.authSuccess === true) {
-      this.infoTitle = "Connexion résussie";
-      this.infoMessage = "Veuillez fermer cette boîte de dialogue";
-    } else {
-      this.infoTitle = "Inscription";
-      this.infoMessage = "Veuillez saisir les informations demandées";
-    }
+  setInfos(infos: {title: string, message: string}) {
+    this.infoTitle = infos.title;
+    this.infoMessage = infos.message;
   }
 
 
@@ -94,15 +88,17 @@ export class SignLogInComponent {
   // check if the email exists before displaying the form
   checkEmail()
   {
-    if (this.loginForm.get('email')?.invalid) {
-      // if the email is invalid, don't check the user existence
-      return;
-    }
-
     this.authenticateService.checkEmail(this.loginForm.get('email')?.value).subscribe({
       next: result => {
-        this.userExists = result;
-        this.emailVerified = true;
+        if (result) {
+          this.step = 'login';
+          this.setInfos(ConstantsInfo.infoMessageLogin.login);
+        }
+        else {
+          this.step = 'signup';
+          this.setInfos(ConstantsInfo.infoMessageLogin.signup);
+        }
+
         this.displayForm();
       },
       error: (error) => {
@@ -114,7 +110,7 @@ export class SignLogInComponent {
   // display the form according to the state of the user
   displayForm()
   {
-    if (this.userExists) {
+    if (this.step === 'login') {
       // if the user exists, only the password is required
       this.passwordFC.setValidators([Validators.required]);
     } else {
@@ -126,42 +122,46 @@ export class SignLogInComponent {
     }
 
     this.loginForm.updateValueAndValidity();
-    this.information();
   }
 
 
   // reset the form to its initial state if the email is modified
   resetForm() {
-    this.userExists = null;
-    this.emailVerified = false;
-    this.loginForm.reset({
-      email: this.emailFC.value
-    });
+    this.step = 'checkEmail';
+    this.setInfos(ConstantsInfo.infoMessageLogin.checkEmail);
+    this.errorMessage = '';
+
+    this.loginForm.reset({email: this.emailFC.value});
+
     this.passwordFC.clearValidators();
     this.firstNameFC.clearValidators();
     this.lastNameFC.clearValidators();
     this.phoneFC.clearValidators();
-    this.loginForm.updateValueAndValidity();
+  }
 
-    this.information();
+  resetPassword() {
+    this.passwordFC.reset();
   }
 
 
   // submit the form
   onSubmit() {
     // Authentification (Login)
-    if (this.userExists) {
+    if (this.step === 'login') {
       this.authenticateService.loginUser(this.loginForm.value.email, this.loginForm.value.password).subscribe({
         next: result => {
           if (result) {
             // if the user is authenticated, display the success message
-            this.authSuccess = true;
-            this.information();
-          } else {
-            console.error('Erreur lors de la connexion');
+            this.step = 'success';
+            this.setInfos(ConstantsInfo.infoMessageLogin.success);
           }
         },
-        error: (error) => {
+        error: (error: HttpErrorResponse) => {
+          if (error.status === 401) {
+            this.errorMessage = ErrorTranslation.errorMessageServer.get(error.error.detail) + " - ";
+            this.errorMessage += error.error.detail;
+            this.resetPassword();
+          }
           console.error(error);
         }
       });
@@ -171,8 +171,8 @@ export class SignLogInComponent {
         next: result => {
           if (result) {
             // if the user is registered, display the success message
-            this.justregistered = true;
-            this.userExists = true;
+            this.step = 'login';
+            this.setInfos(ConstantsInfo.infoMessageLogin.registered);
             this.displayForm();
           } else {
             console.error('Erreur lors de l\'inscription');
@@ -183,6 +183,17 @@ export class SignLogInComponent {
         }
       });
     }
+  }
+
+  // close the modal
+  onClose() {
+    this.step = 'checkEmail';
+    this.setInfos(ConstantsInfo.infoMessageLogin.checkEmail);
+    this.errorMessage = '';
+
+    this.loginForm.reset();
+
+    this.close.emit();
   }
 }
 
