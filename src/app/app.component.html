@@ -4,5 +4,5 @@
 </main>
 <app-footer></app-footer>
 <jw-modal id="modal-1">
-    <app-sign-log-in />
+    <app-sign-log-in [idModal]="'modal-1'" (close)="modalService.close()"/>
 </jw-modal>
