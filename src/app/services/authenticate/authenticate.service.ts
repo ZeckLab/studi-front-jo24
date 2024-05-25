@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthenticateService {
-  private isAuthenticated = false;
+  private isAuthenticated = (localStorage.getItem('access_token')!=null);     // waiting best solution
   private accessToken: string | null = null;
   private statusAuthListener = new Subject<boolean>();
 

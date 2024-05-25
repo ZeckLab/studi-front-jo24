@@ -1,4 +1,5 @@
 @use "../mixins";
+@use "../variables" as v;
 
 .offers-presentation {
     width: 100%;
@@ -58,6 +59,29 @@
 
         p {
             margin-top: 1rem;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+
+            button {
+                padding: 0.75rem 1rem;
+                font-family: Paris24, sans-serif;
+                font-weight: bold;
+                border: 0.2rem solid v.$primary-color;
+                border-radius: 0.75rem;
+                color: v.$primary-color;
+                background-color: v.$secondary-color;
+                font-size: 1rem;
+                cursor: pointer;                                
+
+                &:hover {
+                    background-color: v.$primary-color;
+                    color: v.$secondary-color;
+                }
+            }
         }
     }
 }

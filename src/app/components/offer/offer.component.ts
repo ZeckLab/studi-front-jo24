@@ -34,7 +34,7 @@ export class OfferComponent {
   }
 
   choiceOffer() {
-    this.choiceEvent.emit({offer: this.offer, quantity: this.quantity});
+    this.choiceEvent.emit(new ShoppingCartItem(this.offer, this.quantity));
     this.quantity = 1;
   }
 

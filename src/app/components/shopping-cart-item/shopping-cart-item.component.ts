@@ -13,15 +13,17 @@ import { FormsModule } from '@angular/forms';
 
 export class ShoppingCartItemComponent {
 
-  @Input() item: ShoppingCartItem = new ShoppingCartItem();
+  @Input() item!: ShoppingCartItem;
   @Output() removeItemClicked = new EventEmitter();
 
   increaseQuantity() {
     this.item.quantity++;
+    this.item.addItemQtyStorage(1);
   }
 
   decreaseQuantity() {
     this.item.quantity--;
+    this.item.removeItemQtyStorage(1);
   }
 
   removeItem() {
