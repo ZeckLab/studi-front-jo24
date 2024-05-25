@@ -13,6 +13,10 @@
         <h3>Mon panier</h3>
         @if (itemsArray.length > 0) {
         <app-shopping-cart [itemsArray]="itemsArray" (removeItemEvent)="removeItem($event)" />
+        <div class="cart-actions">
+            <button (click)="emptyCart()">Vider</button>
+            <button (click)="checkout()">Valider le panier</button>
+        </div>
         }
         @else {
         <p>Votre panier est vide</p>

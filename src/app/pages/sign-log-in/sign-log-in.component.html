@@ -18,7 +18,7 @@
             <div *ngIf="emailFC.errors?.['email']">L'email n'est pas valide.</div>
         </div>
         <div class="actions-container">
-            <button type="button" *ngIf="step === 'checkEmail'" (click)="checkEmail()" 
+            <button type="button" id="checkBtn" *ngIf="step === 'checkEmail'" (click)="checkEmail()"
                 [disabled]="emailFC.invalid">Vérifier</button>
         </div>
     </div>
@@ -66,7 +66,7 @@
         <div *ngIf="errorMessage != '' && passwordFC.invalid" class="errorServer">{{errorMessage}}</div>
     </div>
     <div class="actions-container">
-        <button (click)="onSubmit()" class="submit-button">{{step==='login' ? 'Se connecter' : 'S\'inscrire'}}</button>
+        <button (click)="onSubmit()" id="submitForm" class="submit-button">{{step==='login' ? 'Se connecter' : 'S\'inscrire'}}</button>
     </div>
     }
 }
