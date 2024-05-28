@@ -5,6 +5,7 @@ import { AuthenticateService } from '../../services/authenticate/authenticate.se
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorTranslation } from '../../services/constantsError';
 import { ConstantsInfo } from '../../constantsInfo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-log-in',
@@ -27,7 +28,7 @@ export class SignLogInComponent {
   errorMessageValidators = ErrorTranslation.errorMessageValidators;
 
 
-  constructor(private formBuilder: FormBuilder, private authenticateService: AuthenticateService) {
+  constructor(private formBuilder: FormBuilder, private authenticateService: AuthenticateService, private router: Router) {
     // create the form
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, this.emailValidator]],
@@ -154,6 +155,10 @@ export class SignLogInComponent {
             // if the user is authenticated, display the success message
             this.step = 'success';
             this.setInfos(ConstantsInfo.infoMessageLogin.success);
+            let redirect = localStorage.getItem('redirect');
+            if(redirect !== null) {
+              this.router.navigate([redirect]);
+            }
           }
         },
         error: (error: HttpErrorResponse) => {

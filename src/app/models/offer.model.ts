@@ -21,3 +21,15 @@ export class Offer {
         Object.assign(this, json);
     }
 }
+
+export class OfferInCart {
+    title: string;
+    nb_people: number;
+    price: number;
+
+    constructor(offer : Offer) {
+        this.title = offer.title;
+        this.nb_people = offer.nb_people;
+        this.price = offer.price;
+    }
+}

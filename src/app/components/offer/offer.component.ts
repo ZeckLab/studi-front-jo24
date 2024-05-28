@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Offer } from '../../models/offer.model';
+import { Offer, OfferInCart } from '../../models/offer.model';
 import { ShoppingCartItem } from '../../models/shoppingCartItem.model';
 
 @Component({
@@ -34,7 +34,7 @@ export class OfferComponent {
   }
 
   choiceOffer() {
-    this.choiceEvent.emit(new ShoppingCartItem(this.offer, this.quantity));
+    this.choiceEvent.emit(new ShoppingCartItem(new OfferInCart(this.offer), this.quantity));
     this.quantity = 1;
   }
 

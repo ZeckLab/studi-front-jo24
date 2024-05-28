@@ -13,6 +13,7 @@ import { ShoppingCartItem } from '../../models/shoppingCartItem.model';
 export class ShoppingCartComponent {
 
   @Input() itemsArray: ShoppingCartItem[] = [];
+  @Input() mode: string = 'write';
   @Output() removeItemEvent = new EventEmitter<ShoppingCartItem>();
 
   removeItem(item: ShoppingCartItem) {

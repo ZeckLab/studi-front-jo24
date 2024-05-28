@@ -3,6 +3,7 @@ import { Offer } from '../../models/offer.model';
 import { OffersService } from '../../services/offers/offers.service';
 import { ShoppingCartItem } from '../../models/shoppingCartItem.model';
 import { ModalService } from '../../services/modal/modal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-offers-page',
@@ -14,7 +15,7 @@ export class OffersPageComponent implements OnInit{
   offersArray: Offer[] = [];
   itemsArray: ShoppingCartItem[] = [];
 
-  constructor(private offersService: OffersService, protected modalService: ModalService) {
+  constructor(private offersService: OffersService, protected modalService: ModalService, protected router: Router) {
   }
 
   ngOnInit(): void {
@@ -59,6 +60,10 @@ export class OffersPageComponent implements OnInit{
       localStorage.setItem('redirect', '/payment');
       
       this.modalService.open('login');
+    }
+    else {
+      // Redirect to the payment page
+      this.router.navigate(['/payment']) ;
     }
   }
 
