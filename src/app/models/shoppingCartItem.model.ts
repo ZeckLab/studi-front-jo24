@@ -1,11 +1,11 @@
-import { Offer } from './offer.model';
+import { OfferInCart } from './offer.model';
 
 
 export class ShoppingCartItem {
-    offer!: Offer;
+    offer!: OfferInCart;
     quantity: number = 0;
 
-    constructor(offer: Offer, quantity: number) {
+    constructor(offer: OfferInCart, quantity: number) {
         this.offer = offer;
         this.quantity = quantity;
     }
