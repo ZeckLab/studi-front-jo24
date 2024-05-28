@@ -19,7 +19,7 @@ export class AuthenticateService {
 
   // get the token
   get getToken(){
-    return this.accessToken;
+    return localStorage.getItem('access_token');
   }
 
   get getIsAuthenticated(){
