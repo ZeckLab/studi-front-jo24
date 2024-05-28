@@ -19,9 +19,7 @@ create(order : any){
     cart: order.cart,
     payment: order.payment,
     nb_people: order.nbPeople,
-  }
-
-  console.log(newOrder);
+  };
 
   const headers = new HttpHeaders({
     'Content-Type': 'application/json',

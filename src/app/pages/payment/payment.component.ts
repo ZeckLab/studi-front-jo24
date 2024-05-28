@@ -76,6 +76,9 @@ export class PaymentComponent {
       // send the datas to the server
       this.orderService.create({ cart: cartOrder, payment: payment, nbPeople: nbPeopleOrder }).subscribe({
         next: (data: any) => {
+          // empty the cart
+          localStorage.removeItem('cart');
+
           alert('Le paiment a bien été effectué. Le billet est disponible dans la section "Mes commandes"');
           this.router.navigate(['/']);
         },
