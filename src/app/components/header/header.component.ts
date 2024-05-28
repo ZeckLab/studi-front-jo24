@@ -23,6 +23,10 @@ export class HeaderComponent {
     this.authService.logoutUser();
   }
 
+  login() {
+    this.modalService.open('login');
+  }
+
   ngOnInit() {
     this.userIsAuthenticated = this.authService.getIsAuthenticated;
     // listen to the status of the authentication

@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { OffersPageComponent } from './pages/offers/offers.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 const routes: Routes = [
     { path: 'offers', component: OffersPageComponent },
+    { path: 'payment', component: PaymentComponent },
     { path: '', component: HomeComponent },
 ];
 

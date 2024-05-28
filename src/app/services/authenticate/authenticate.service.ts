@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, Subject, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticateService {
-  private isAuthenticated = false;
+  private isAuthenticated = (localStorage.getItem('access_token')!=null);     // waiting best solution
   private accessToken: string | null = null;
-  private expiresDelta : any;
   private statusAuthListener = new Subject<boolean>();
 
   endpointURL = environment.api;
@@ -20,7 +19,7 @@ export class AuthenticateService {
 
   // get the token
   get getToken(){
-    return this.accessToken;
+    return localStorage.getItem('access_token');
   }
 
   get getIsAuthenticated(){
@@ -90,11 +89,9 @@ export class AuthenticateService {
         next: (data: any) => {
           // Save the token in the local storage
           localStorage.setItem('access_token', data.access_token);
-          localStorage.setItem('expires_delta', data.expires_delta);
 
           // Save the token in the service
           this.accessToken = data.access_token;
-          this.expiresDelta = data.expires_delta;
 
           // Set the authentication to true and notify the listeners
           this.isAuthenticated = true;
@@ -124,7 +121,6 @@ export class AuthenticateService {
 
     // remove the token from the local storage
     localStorage.removeItem('access_token');
-    localStorage.removeItem('expires_delta');
 
     // redirect the user to the home page
     this.router.navigate(['']);
