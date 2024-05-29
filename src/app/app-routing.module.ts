@@ -4,12 +4,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { OffersPageComponent } from './pages/offers/offers.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 const routes: Routes = [
     { path: 'offers', component: OffersPageComponent },
     { path: 'payment', component: PaymentComponent },
     { path: 'orders', component: OrdersComponent },
     { path: '', component: HomeComponent },
+    { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
