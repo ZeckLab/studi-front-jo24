@@ -12,8 +12,7 @@
             <div class="main_pages" [class.is-open]="isMenuOpen">
                 <a routerLink="/" routerLinkActive="selected" aria-label="Accueil" (click)="toggleMenu()" [routerLinkActiveOptions]="{ exact : true}">Accueil</a>
                 <a routerLink="/offers" routerLinkActive="selected" aria-label="Offres" (click)="toggleMenu()">Offres</a>
-                <a routerLink="/events" routerLinkActive="selected" aria-label="Epreuves" (click)="toggleMenu()">Epreuves</a>
-                <a *ngIf="!userIsAuthenticated" (click)="login()">Se connecter</a>
+                <a *ngIf="!userIsAuthenticated" (click)="login()">Connexion / Inscription</a>
                 <a *ngIf="userIsAuthenticated" (click)="logout()">Se déconnecter</a>
             </div>
         </nav>

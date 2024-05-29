@@ -16,12 +16,13 @@
             @include mixins.media-max("phone-between") {
                 display: flex;
                 justify-content: center;
+                padding: 1rem 0;
             }
         }
     }
 
     .basket-total {
-        padding: 1rem;
+        padding: 0 1rem;
         font-size: 1.1rem;
         text-align: center;
 
