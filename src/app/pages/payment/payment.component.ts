@@ -5,6 +5,8 @@ import { ShoppingCartItem } from '../../models/shoppingCartItem.model';
 import { ShoppingCartComponent } from "../../components/shopping-cart/shopping-cart.component";
 import { OrderService } from '../../services/order/order.service';
 import { Router } from '@angular/router';
+import { AuthenticateService } from '../../services/authenticate/authenticate.service';
+import { ModalService } from '../../services/modal/modal.service';
 
 @Component({
   selector: 'app-payment',
@@ -19,7 +21,13 @@ export class PaymentComponent {
   itemsArray: ShoppingCartItem[] = [];
   modeCart = 'read';
 
-  constructor(private formBuilder: FormBuilder, private orderService: OrderService, private router: Router) {
+  constructor(private formBuilder: FormBuilder,
+              private orderService: OrderService,
+              private router: Router,
+              private authService: AuthenticateService,
+              protected modalService: ModalService
+            )
+  {
     // create the form
     this.paymentForm = this.formBuilder.group({
       cardNumber: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
@@ -34,6 +42,19 @@ export class PaymentComponent {
     // when the user is redirected from the login page, we redirect him to the payment page
     if (localStorage.getItem('redirect') === '/payment') {
       localStorage.removeItem('redirect');
+    }
+  }
+
+  ngOnInit(): void {
+    // If the user is not authenticated, we redirect him to the login modal
+    if (!this.authService.getIsAuthenticated) {
+      alert("You are not authenticated");
+      this.router.navigate(['/']);
+      this.modalService.open('login');
+    // If the cart is empty, we redirect him to the offers page
+    } else if (this.itemsArray.length === 0) {
+      alert("Votre panier est vide. Vous allez être redirigé vars la page des offres.");
+      this.router.navigate(['/offers']);
     }
   }
 
@@ -79,8 +100,8 @@ export class PaymentComponent {
           // empty the cart
           localStorage.removeItem('cart');
 
-          alert('Le paiment a bien été effectué. Le billet est disponible dans la section "Mes commandes"');
-          this.router.navigate(['/']);
+          alert('Le paiment a bien été effectué. Vous allez être redirigé vers votre espace pour accéder à votre billet.');
+          this.router.navigate(['/orders']);
         },
         error: (error) => {
           console.log('Payment failed');

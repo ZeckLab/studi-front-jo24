@@ -12,10 +12,13 @@ import { OffersPageComponent} from './pages/offers/offers.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShoppingCartComponent } from "./components/shopping-cart/shopping-cart.component";
 import { SignLogInComponent } from './pages/sign-log-in/sign-log-in.component';
+import { HeaderUserComponent } from "./components/header-user/header-user.component";
 import { ModalComponent } from './components/modal/modal.component';
 import { RouterLinkActive } from '@angular/router';
 
+
 @NgModule({
+    imports: [BrowserModule, AppRoutingModule, HttpClientModule, ShoppingCartComponent, SignLogInComponent, RouterLinkActive, HeaderUserComponent],
     declarations: [
         AppComponent,
         HomeComponent,
@@ -27,8 +30,7 @@ import { RouterLinkActive } from '@angular/router';
         ModalComponent
     ],
     providers: [],
-    bootstrap: [AppComponent],
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule, ShoppingCartComponent, SignLogInComponent, RouterLinkActive]
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
