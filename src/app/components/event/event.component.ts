@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventM } from '../../models/eventM.model';
 
 @Component({
@@ -6,13 +6,10 @@ import { EventM } from '../../models/eventM.model';
   templateUrl: './event.component.html',
   styleUrl: '/src/scss/components/event.scss'
 })
-export class EventComponent implements OnInit{
+export class EventComponent{
 
   @Input() event: EventM = new EventM();
   
   constructor() {
   }
-
-  ngOnInit(): void {}
-
 }

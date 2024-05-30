@@ -159,6 +159,10 @@ export class SignLogInComponent {
             if(redirect !== null) {
               this.router.navigate([redirect]);
             }
+
+            if(this.authenticateService.getIsAdmin) {
+              this.router.navigate(['admin']);
+            }
           }
         },
         error: (error: HttpErrorResponse) => {

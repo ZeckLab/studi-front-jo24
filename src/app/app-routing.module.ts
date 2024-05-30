@@ -5,11 +5,19 @@ import { OffersPageComponent } from './pages/offers/offers.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
+import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
 
 const routes: Routes = [
+    { path: 'admin', component: AdminHomeComponent},
+    { path: 'admin/offers', component: UnderConstructionComponent},
+    { path: 'admin/events', component: UnderConstructionComponent},
+    { path: 'admin/orders', component: UnderConstructionComponent},
+    { path: 'admin/staffs', component: UnderConstructionComponent},
     { path: 'offers', component: OffersPageComponent },
     { path: 'payment', component: PaymentComponent },
     { path: 'orders', component: OrdersComponent },
+    { path: 'profile', component: UnderConstructionComponent },
     { path: '', component: HomeComponent },
     { path: '**', component: PageNotFoundComponent },
 ];
