@@ -160,9 +160,11 @@ export class SignLogInComponent {
               this.router.navigate([redirect]);
             }
 
-            if(this.authenticateService.getIsAdmin) {
-              this.router.navigate(['admin']);
-            }
+            this.authenticateService.getAdminAuthListener.subscribe((isAdmin: boolean) => {
+              if(isAdmin) {
+                this.router.navigate(['/admin']);
+              }
+            });
           }
         },
         error: (error: HttpErrorResponse) => {
@@ -196,6 +198,9 @@ export class SignLogInComponent {
 
   // close the modal
   onClose() {
+    /*if(this.step === 'success' && this.authenticateService.getIsAdmin) {
+      this.router.navigate(['/admin']);
+    }*/
     this.step = 'checkEmail';
     this.setInfos(ConstantsInfo.infoMessageLogin.checkEmail);
     this.errorMessage = '';
