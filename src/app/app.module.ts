@@ -15,10 +15,11 @@ import { SignLogInComponent } from './pages/sign-log-in/sign-log-in.component';
 import { HeaderUserComponent } from "./components/header-user/header-user.component";
 import { ModalComponent } from './components/modal/modal.component';
 import { RouterLinkActive } from '@angular/router';
+import { HeaderAdminComponent } from './components/header-admin/header-admin.component';
 
 
 @NgModule({
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule, ShoppingCartComponent, SignLogInComponent, RouterLinkActive, HeaderUserComponent],
+    imports: [BrowserModule, AppRoutingModule, HttpClientModule, ShoppingCartComponent, SignLogInComponent, RouterLinkActive, HeaderUserComponent, HeaderAdminComponent],
     declarations: [
         AppComponent,
         HomeComponent,

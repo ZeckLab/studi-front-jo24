@@ -12,6 +12,10 @@ export class AuthenticateService {
   private accessToken: string | null = null;
   private statusAuthListener = new Subject<boolean>();
 
+  private roles: string[] = [];
+  private isAdmin = false;
+  private adminAthListener = new Subject<boolean>();
+
   endpointURL = environment.api;
 
   constructor(private httpClient: HttpClient, private router: Router){
@@ -29,6 +33,23 @@ export class AuthenticateService {
   // get the status of the authentication
   get getStatusAuthListener(){
     return this.statusAuthListener.asObservable();
+  }
+
+  // look if the user is an admin
+  get getAdminAuthListener(){
+    return this.adminAthListener.asObservable();
+  }
+
+  get getIsAdmin(){
+    let roles_local = localStorage.getItem('roles');
+    if(roles_local){
+      this.isAdmin = JSON.parse(roles_local).includes('admin');
+    }
+    return this.isAdmin;
+  }
+
+  get getRoles(){
+    return this.roles;
   }
 
   // Check if the email exists in the database
@@ -97,6 +118,18 @@ export class AuthenticateService {
           this.isAuthenticated = true;
           this.statusAuthListener.next(true);
 
+          // Get the roles of the user
+          this.getUserRoles().subscribe({
+            next: () => {
+              observer.next(true);
+              observer.complete();
+            },
+            error: (error) => {
+              observer.error(error);
+              observer.complete();
+            }
+          });
+
           observer.next(true);
           observer.complete();
         },
@@ -115,17 +148,46 @@ export class AuthenticateService {
     // reset the token and the authentication status
     this.accessToken = null;
     this.isAuthenticated = false;
+    this.roles = [];
+    this.isAdmin = false;
 
     // notify the listeners
     this.statusAuthListener.next(false);
+    this.adminAthListener.next(false);
 
     // remove the token from the local storage
     localStorage.removeItem('access_token');
+    localStorage.removeItem('roles');
 
     // redirect the user to the home page
     this.router.navigate(['']);
   }
 
-  // check if the user is authenticated
+  // Get the roles of the user connected
+  getUserRoles() {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.getToken
+    });
+
+    return new Observable<string[]>(observer => {
+      this.httpClient.get(this.endpointURL + 'users/me/roles', { headers }).subscribe({
+        next: (data: any) => {
+          this.roles = data;
+          localStorage.setItem('roles', JSON.stringify(data));
+
+          this.isAdmin = this.roles.includes('admin');
+          this.adminAthListener.next(this.isAdmin);
+
+          observer.next(data);
+          observer.complete();
+        },
+        error: (error) => {
+          observer.error(error);
+          observer.complete();
+        }
+      });
+    });
+  }
   
 }
