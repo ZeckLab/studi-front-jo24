@@ -16,17 +16,17 @@ import { HeaderUserComponent } from "./components/header-user/header-user.compon
 import { ModalComponent } from './components/modal/modal.component';
 import { RouterLinkActive } from '@angular/router';
 import { HeaderAdminComponent } from './components/header-admin/header-admin.component';
+import { AdminOffersComponent } from './pages/admin-offers/admin-offers.component';
 
 
 @NgModule({
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule, ShoppingCartComponent, SignLogInComponent, RouterLinkActive, HeaderUserComponent, HeaderAdminComponent],
+    imports: [BrowserModule, AppRoutingModule, HttpClientModule, ShoppingCartComponent, SignLogInComponent, RouterLinkActive, HeaderUserComponent, HeaderAdminComponent, OfferComponent, AdminOffersComponent],
     declarations: [
         AppComponent,
         HomeComponent,
         HeaderComponent,
         FooterComponent,
         EventComponent,
-        OfferComponent,
         OffersPageComponent,
         ModalComponent
     ],
