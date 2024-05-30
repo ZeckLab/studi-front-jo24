@@ -107,7 +107,7 @@ export class AuthenticateService {
 
     return new Observable<boolean>(observer => {
       this.httpClient.post(this.endpointURL + 'login', body, {headers}).subscribe({
-        next: (data: any) => {
+        next: async (data: any) => {
           // Save the token in the local storage
           localStorage.setItem('access_token', data.access_token);
 

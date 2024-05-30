@@ -9,11 +9,11 @@ import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
 
 const routes: Routes = [
-    { path: 'admin', component: AdminHomeComponent},
     { path: 'admin/offers', component: UnderConstructionComponent},
     { path: 'admin/events', component: UnderConstructionComponent},
     { path: 'admin/orders', component: UnderConstructionComponent},
     { path: 'admin/staffs', component: UnderConstructionComponent},
+    { path: 'admin', component: AdminHomeComponent},
     { path: 'offers', component: OffersPageComponent },
     { path: 'payment', component: PaymentComponent },
     { path: 'orders', component: OrdersComponent },
