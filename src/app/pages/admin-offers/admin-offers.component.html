@@ -1,0 +1,9 @@
+<section class="offers-presentation">
+    <h2>Bienvenue sur la page d'administration des offres</h2>
+</section>
+
+<section class="offers-content">
+    <div class="cards">
+        <app-offer *ngFor="let offerItem of offersArray" [offer]="offerItem" [isAdmin]="true" class="card"></app-offer>
+    </div>
+</section>

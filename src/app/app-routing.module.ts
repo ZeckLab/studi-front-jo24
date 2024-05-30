@@ -7,9 +7,10 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
+import { AdminOffersComponent } from './pages/admin-offers/admin-offers.component';
 
 const routes: Routes = [
-    { path: 'admin/offers', component: UnderConstructionComponent},
+    { path: 'admin/offers', component: AdminOffersComponent},
     { path: 'admin/events', component: UnderConstructionComponent},
     { path: 'admin/orders', component: UnderConstructionComponent},
     { path: 'admin/staffs', component: UnderConstructionComponent},

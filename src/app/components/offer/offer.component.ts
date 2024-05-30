@@ -2,9 +2,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Offer, OfferInCart } from '../../models/offer.model';
 import { ShoppingCartItem } from '../../models/shoppingCartItem.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-offer',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './offer.component.html',
   styleUrl: '/src/scss/components/offer.scss'
 })
@@ -14,6 +17,10 @@ export class OfferComponent {
   @Input() offer: Offer = new Offer();
   @Input() quantity: number = 1;
   @Output() choiceEvent = new EventEmitter<ShoppingCartItem>();
+
+  // Admin management
+  @Input() isAdmin: boolean = false;
+  @Input() mode = 'view';       // view, edit, add
   
 
   changeOffer(valueStr: string) {
@@ -40,5 +47,30 @@ export class OfferComponent {
 
   scroll(){
     document.getElementById("shoppingcart")?.scrollIntoView({behavior: "smooth"});
+  }
+
+  // Admin management
+  editOffer() {
+    return;
+  }
+
+  saveOffer() {
+    return;
+  }
+
+  updateOffer() {
+    return;
+  }
+
+  addOffer() {
+    return;
+  }
+
+  hideOffer() {
+    return;
+  }
+
+  visibleOffer() {
+    return;
   }
 }
