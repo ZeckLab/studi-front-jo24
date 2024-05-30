@@ -12,6 +12,9 @@ export class HeaderComponent {
   userIsAuthenticated = false;
   private authListenerSubs: any;
 
+  isAdmin = false;
+  private adminListenerSubs: any;
+
   constructor(protected modalService: ModalService, private authService: AuthenticateService) {}
 
   toggleMenu() {
@@ -32,6 +35,12 @@ export class HeaderComponent {
     // listen to the status of the authentication
     this.authListenerSubs = this.authService.getStatusAuthListener.subscribe((isAuthenticated: boolean) => {
       this.userIsAuthenticated = isAuthenticated;
+    });
+
+    this.isAdmin = this.authService.getIsAdmin;
+    // listen to the status of the authentication
+    this.adminListenerSubs = this.authService.getAdminAuthListener.subscribe((isAdmin: boolean) => {
+      this.isAdmin = isAdmin;
     });
   }
 
