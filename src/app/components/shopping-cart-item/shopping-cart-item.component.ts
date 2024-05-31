@@ -24,6 +24,11 @@ export class ShoppingCartItemComponent {
 
   decreaseQuantity() {
     this.item.quantity--;
+    
+    if(this.item.quantity == 0) {
+      this.removeItem();
+    }
+
     this.item.removeItemQtyStorage(1);
   }
 
