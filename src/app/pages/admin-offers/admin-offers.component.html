@@ -1,9 +1,14 @@
 <section class="offers-presentation">
     <h2>Bienvenue sur la page d'administration des offres</h2>
+    <p>Vous pouvez ici ajouter, modifier ou rendre invisible des offres au grand public. Vous pouvez également voir les offres déjà existantes.</p>
+    <p>Chaque offre déja existante possède un bouton modifier pour éditer une offre et un bouton cacher/voir pour rendre invisible/visible une offre</p>
+    <p>Par défaut, une offre est créée avec le statut non visible. Un formulaire vide est disponible pour créer une nouvelle offre</p>
+    <p>Deux images sont disponibles pour tester l'ajout : assets/images/offers/group.jpg et assets/images/offers/trio.jpg</p>
 </section>
 
 <section class="offers-content">
     <div class="cards">
-        <app-offer *ngFor="let offerItem of offersArray" [offer]="offerItem" [isAdmin]="true" class="card"></app-offer>
+        <app-offer-input *ngFor="let offerItem of offersArray" [offer]="offerItem" class="card" (offerAdded)="update($event)"></app-offer-input>
+        <app-offer-input [offer]="newOffer" class="card" (offerAdded)="update($event)"></app-offer-input>
     </div>
 </section>

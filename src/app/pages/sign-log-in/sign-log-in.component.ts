@@ -6,6 +6,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorTranslation } from '../../services/constantsError';
 import { ConstantsInfo } from '../../constantsInfo';
 import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
 
 @Component({
   selector: 'app-sign-log-in',
@@ -39,7 +41,7 @@ export class SignLogInComponent {
     });
 
     // if the email is modified, reset the form because the email must be verified again
-    this.loginForm.get('email')?.valueChanges.subscribe(value => {
+    this.loginForm.get('email')?.valueChanges.pipe(debounceTime(350), distinctUntilChanged()).subscribe(value => {
       if (['login','signup'].includes(this.step)) {
         this.resetForm();
       }
