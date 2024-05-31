@@ -22,9 +22,7 @@ export class AdminOffersComponent implements OnInit{
   ngOnInit(): void {
     this.offersService.getAll().subscribe({
       next: (offers: Offer[]) => {
-        console.log(offers);
         this.offersArray = offers;
-        console.log(this.offersArray);
       },
       error: (error: any) => {
         console.error(error);

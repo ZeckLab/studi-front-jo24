@@ -30,7 +30,6 @@ export class HeaderUserComponent {
     // listen to the status of the authentication
     this.adminListenerSubs = this.authService.getAdminAuthListener.subscribe((isAdmin: boolean) => {
       this.isAdmin = isAdmin;
-      console.log(this.isAdmin);
     });
   }
 
