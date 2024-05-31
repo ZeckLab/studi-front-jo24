@@ -17,7 +17,6 @@ export class OffersService {
 
   getAll() {
     return new Observable<Offer[]>(observer => {
-      console.log(this.endpointURL);
       this.httpClient.get(this.endpointURL).subscribe({
         next: (data: any) => {
           const offers = [];
