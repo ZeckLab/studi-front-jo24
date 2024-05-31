@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ShoppingCartItem } from '../../models/shoppingCartItem.model';
 import { ShoppingCartComponent } from "../../components/shopping-cart/shopping-cart.component";
 import { OrderService } from '../../services/order/order.service';
@@ -31,7 +31,7 @@ export class PaymentComponent {
     // create the form
     this.paymentForm = this.formBuilder.group({
       cardNumber: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
-      expiryDate: ['', [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])\/[0-9]{2}$')]],
+      expiryDate: ['', [Validators.required, this.expiryDateValidator, Validators.pattern('^[0-9]{2}/[0-9]{2}$')]],
       cvv: ['', [Validators.required, Validators.pattern('^[0-9]{3}$')]],
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
     });
@@ -72,6 +72,14 @@ export class PaymentComponent {
 
   get nameFC() {
     return this.paymentForm.get('name') as FormControl<string>;
+  }
+
+  expiryDateValidator(control: AbstractControl): ValidationErrors | null {
+    const monthExp = parseInt(control.value.split('/')[0]);
+    const yearExp = parseInt(control.value.split('/')[1]);
+    const currentMonth = new Date().getMonth() + 1;
+    const currentYear = new Date().getFullYear() % 100;
+    return (yearExp > currentYear || (yearExp === currentYear && monthExp >= currentMonth)) ? null : { expiryDate: true };
   }
 
   pay() {
