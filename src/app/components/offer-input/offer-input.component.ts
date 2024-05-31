@@ -11,7 +11,7 @@ import { OffersService } from '../../services/offers/offers.service';
   templateUrl: './offer-input.component.html',
   styleUrl: '/src/scss/components/offer-input.scss'
 })
-export class OfferInputComponent implements OnInit {
+export class OfferInputComponent {
   @Input() offer!: Offer;
   @Input() mode: string = 'view';
   @Output() offerAdded = new EventEmitter<Offer>();
@@ -27,10 +27,6 @@ export class OfferInputComponent implements OnInit {
       visible: [null],
       offer_id: [null],
     });
-  }
-
-  ngOnInit(): void {
-    console.log('ngOnInit', this.offer);
   }
 
   get form() { return this.offerForm.controls; }
