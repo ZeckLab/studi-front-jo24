@@ -1,0 +1,71 @@
+<div [formGroup]="offerForm" class="container">
+    <article class="offer card" [ngClass]="{'hide': !offer.visible}">
+        <!-- Offer Card Title-->
+        <header [ngClass]="{'hide': !offer.visible}">
+            <p>
+                <input formControlName="title" type="text" placeholder="Titre non utilisé."
+                    *ngIf="mode=='edit'" class="input-title" required/>
+            </p>
+            <p *ngIf="mode=='view'">{{offer.title}}</p>
+        </header>
+        <!-- Offer Card Image and Description-->
+        <img src="{{offer.image_url}}" alt="{{offer.nb_people}} stickman pour l'offre {{offer.title}}">
+        <input formControlName="image_url" type="text" placeholder="Url d'image assets/images/offers/..."
+            *ngIf="mode=='edit'" class="input-image" required/>
+        <div class="content">
+            <textarea formControlName="description" type="text" rows="4" cols="20" class="desc" *ngIf="mode=='edit'"
+                placeholder="Veuillez saisir une description." class="textarea-description" required> 
+            </textarea>
+            <p *ngIf="mode=='view'">{{offer.description}}</p>
+        </div>
+        <!-- Offer Card Infos - nb_people and price -->
+        <div class="infos" [ngClass]="{'hide': !offer.visible}">
+            <p>
+                <span *ngIf="mode=='view'">{{offer.nb_people}}</span>
+                <input formControlName="nb_people" type="number" *ngIf="mode=='edit'" class="input-nb_people" required/>
+                personne(s)
+            </p>
+            <p>
+                <span *ngIf="mode=='view'">Prix : {{offer.price}} </span>
+                <input formControlName="price" type="number" *ngIf="mode=='edit'" class="input-price" required/> €
+            </p>
+        </div>
+        <!-- Offer Card Errors -->
+        <div class="errors">
+            <div *ngIf="form['title'].invalid && (form['title'].touched || form['title'].dirty)" class="error">
+                <div *ngIf="form['title'].errors?.['required']">Le titre de l'offre est requis.</div>
+            </div>
+            <div *ngIf="form['image_url'].invalid && (form['image_url'].touched || form['image_url'].dirty)" class="error">
+                <div *ngIf="form['image_url'].errors?.['required']">L'url de l'image est requise.</div>
+            </div>
+            <div *ngIf="form['description'].invalid && (form['description'].touched || form['description'].dirty)" class="error">
+                <div *ngIf="form['description'].errors?.['required']">La description est requise.</div>
+                <div *ngIf="form['description'].errors?.['minlength']">La description doit contenir au moins 10 caractères.</div>
+            </div>
+            <div *ngIf="form['nb_people'].invalid && (form['nb_people'].touched || form['nb_people'].dirty)" class="error">
+                <div *ngIf="form['nb_people'].errors?.['required']">Le nombre de personnes est requis.</div>
+                <div *ngIf="form['nb_people'].errors?.['min']">Le nombre de personnes doit être supérieur à 0.</div>
+            </div>
+            <div *ngIf="form['price'].invalid && (form['price'].touched || form['price'].dirty)" class="error">
+                <div *ngIf="form['price'].errors?.['required']">Le prix est requis.</div>
+                <div *ngIf="form['price'].errors?.['min']">Le prix doit être supérieur à 0.</div>
+            </div>
+        </div>
+        <!-- Offer Card Footer - Edit, Update, Hide and Show -->
+        <footer [ngClass]="{'hide': !offer.visible}">
+            <div class="offer-actions">
+                <div class="offer-actions-edit">
+                    <button (click)="editOffer()" class="btn-edit" *ngIf="mode=='view'"
+                        [ngClass]="{'hide': !offer.visible}">Modifier</button>
+                    <button (click)="checkTitleOffer()" class="btn-update" *ngIf="mode=='edit'" [disabled]="!offerForm.valid"
+                        [ngClass]="{'hide': !offer.visible}">Enregistrer</button>
+                </div>
+                <div class="offer-actions-visibility">
+                    <button (click)="toggleVisibleOffer()" class="btn-hide" *ngIf="offer.visible">Cacher</button>
+                    <button (click)="toggleVisibleOffer()" class="btn-visible" *ngIf="!offer.visible"
+                        [ngClass]="{'hide': !offer.visible}">Voir</button>
+                </div>
+            </div>
+        </footer>
+    </article>
+</div>

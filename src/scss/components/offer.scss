@@ -6,6 +6,7 @@
     grid-template-rows: max-content 12.5rem 1fr;
     border-radius: 0.5rem;
     border: v.$primary-color solid 0.2rem;
+    box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.5);
 
     &.hide {
         border: rgba(20, 20, 20, 0.5) solid 0.2rem;
@@ -180,7 +181,7 @@
                     font-family: "Paris2024", sans-serif;
                     font-size: 1.1rem;
                     border-bottom: transparent solid 0.15rem;
-                    border-radius: 0;
+                    border-radius: 0;   
 
                     &.hide {
                         color: v.$primary-color;
