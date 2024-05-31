@@ -11,8 +11,8 @@
                 <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber"
                     placeholder="Entrer votre numéro de carte" required>
                 <div *ngIf="cardNumberFC.touched && cardNumberFC.invalid" class="error">
-                    <div *ngIf="cardNumberFC.errors?.['required']">Le téléphone est requis.</div>
-                    <div *ngIf="cardNumberFC.errors?.['pattern']">Le téléphone doit être un numéro valide.</div>
+                    <div *ngIf="cardNumberFC.errors?.['required']">Le numéro de carte bleue est requis.</div>
+                    <div *ngIf="cardNumberFC.errors?.['pattern']">Le numéros de carte bleue doit être une numéro à 16 chiffres</div>
                 </div>
             </div>
             <div class="expiryCvv-container">
@@ -21,16 +21,17 @@
                     <input type="text" class="form-control" id="expiryDate" formControlName="expiryDate"
                         placeholder="09/25" required>
                     <div *ngIf="expiryDateFC.touched && expiryDateFC.invalid" class="error">
-                        <div *ngIf="expiryDateFC.errors?.['required']">Le téléphone est requis.</div>
-                        <div *ngIf="expiryDateFC.errors?.['pattern']">Le téléphone doit être un numéro valide.</div>
+                        <div *ngIf="expiryDateFC.errors?.['required']">La date d'expiration est requise</div>
+                        <div *ngIf="expiryDateFC.errors?.['pattern']">La date doit être au format MM/YY</div>
+                        <div *ngIf="expiryDateFC.errors?.['expiryDate']">La date doit être supérieure à la date actuelle</div>
                     </div>
                 </div>
                 <div class="cvv-container">
                     <label for="cvv">CVC</label>
                     <input type="text" class="form-control" id="cvv" formControlName="cvv" placeholder="555" required>
                     <div *ngIf="cvvFC.touched && cvvFC.invalid" class="error">
-                        <div *ngIf="cvvFC.errors?.['required']">Le téléphone est requis.</div>
-                        <div *ngIf="cvvFC.errors?.['pattern']">Le téléphone doit être un numéro valide.</div>
+                        <div *ngIf="cvvFC.errors?.['required']">Le CVC est requis</div>
+                        <div *ngIf="cvvFC.errors?.['pattern']">Le CVC doit être valide</div>
                     </div>
                 </div>
             </div>
@@ -39,8 +40,8 @@
                 <input type="text" class="form-control" id="name" formControlName="name"
                     placeholder="Entrer le nom sur la carte" required>
                 <div *ngIf="nameFC.touched && nameFC.invalid" class="error">
-                    <div *ngIf="nameFC.errors?.['required']">Le téléphone est requis.</div>
-                    <div *ngIf="nameFC.errors?.['pattern']">Le téléphone doit être un numéro valide.</div>
+                    <div *ngIf="nameFC.errors?.['required']">Le nom est requis.</div>
+                    <div *ngIf="nameFC.errors?.['pattern']">Le nom comporte que des lettres.</div>
                 </div>
             </div>
             <div class="actions-container">
