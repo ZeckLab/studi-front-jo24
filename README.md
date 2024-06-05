@@ -3,8 +3,8 @@ Projet effectué dans le cadre de la validation du Bloc - développement d'une s
 Utilisation de HTML, SCSS, Angular
 Utilisation de VisualStudiCode
 
-The link of project on Netlify in produciton : https://studi-front-jo24.netlify.app/
-The link of project on Netlify in preproduction : https://preprod-studi-front-jo24.netlify.app/
+- The link of project on Netlify in produciton : https://studi-front-jo24.netlify.app/
+- The link of project on Netlify in preproduction : https://preprod-studi-front-jo24.netlify.app/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 
