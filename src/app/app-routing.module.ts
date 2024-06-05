@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
 import { AdminOffersComponent } from './pages/admin-offers/admin-offers.component';
+import { UserProfiletComponent } from './pages/user-profile/user-profile.component';
 
 const routes: Routes = [
     { path: 'admin/offers', component: AdminOffersComponent},
@@ -18,7 +19,7 @@ const routes: Routes = [
     { path: 'offers', component: OffersPageComponent },
     { path: 'payment', component: PaymentComponent },
     { path: 'orders', component: OrdersComponent },
-    { path: 'profile', component: UnderConstructionComponent },
+    { path: 'profile', component: UserProfiletComponent },
     { path: '', component: HomeComponent },
     { path: '**', component: PageNotFoundComponent },
 ];

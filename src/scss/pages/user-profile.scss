@@ -1,0 +1,255 @@
+@use "../global";
+@use "../variables" as v;
+@use "../mixins";
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .container-flex {
+        display: flex;
+        flex-direction: column;
+        width: 46rem;
+        margin: 0 1rem;
+
+        @include mixins.media-max("phone-between") {
+            margin: 0 0.5rem;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        .user-profile {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            border: 1px solid #141414;
+            border-radius: 0.5rem;
+            align-items: flex-start;
+            gap: 0.5rem;
+
+            @include mixins.media-max("phone-between") {
+                padding: 0.75rem;
+            }
+
+            @include mixins.media-max("phone-up") {
+                padding: 1rem;
+            }
+
+            &.edit {
+                gap: 0;
+            }
+
+            .user-profile-label {
+                font-weight: 700;
+                width: 40%;
+                text-align: right;
+
+                @include mixins.media-max("phone-up") {
+                    text-align: center;
+                }
+
+
+            }
+
+
+            .user-profile-email {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 1rem;
+                padding-top: 1rem;
+                width: 100%;
+
+                @include mixins.media-max("phone-up") {
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: 0.25rem;
+                }
+            }
+
+            .user-profile-name {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 1rem;
+                padding-top: 1rem;
+                width: 100%;
+
+                &.view {
+                    padding: 0;
+
+                    @include mixins.media-max("phone-up") {
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 0.25rem;
+                    }
+                }
+
+                &.edit {
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: 0;
+                    padding: 0;
+
+                    .user-profile-name-content {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+
+                        @include mixins.media-max("tablet-up") {
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            align-items: center;
+                            gap: 1.25rem;
+                        }
+
+                        .user-profile-firstName,
+                        .user-profile-lastName {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            gap: 1rem;
+                            width: 50%;
+
+                            @include mixins.media-max("tablet-up") {
+                                width: 100%;
+                            }
+
+                            @include mixins.media-max("phone-up") {
+                                flex-direction: column;
+                                justify-content: flex-start;
+                                align-items: center;
+                                gap: 0.25rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .user-profile-phone {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 1rem;
+                width: 100%;
+
+                &.view {
+                    padding: 0;
+                    gap: 1rem;
+
+                    @include mixins.media-max("phone-up") {
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 0.25rem;
+                    }
+                }
+
+                &.edit {
+                    padding: 0;
+                    gap: 1rem;
+                    align-items: flex-start;
+
+                    @include mixins.media-max("tablet-up") {
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 0;
+                    }
+
+                    .user-profile-phonenumber {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 1rem;
+                        width: 50%;
+                        flex-shrink: 0;
+
+                        @include mixins.media-max("tablet-up") {
+                            width: 100%;
+                        }
+
+                        @include mixins.media-max("phone-up") {
+                            flex-direction: column;
+                            justify-content: flex-start;
+                            align-items: center;
+                            gap: 0.25rem;
+                        }
+                    }
+                }
+
+
+            }
+
+            input {
+                all: unset;
+                padding: 0.3rem;
+                border-bottom: 0.1rem solid #141414;
+
+                @include mixins.media-max("phone-between") {
+                    width: 9.5rem;
+                }
+            }
+
+            .ng-valid[required],
+            .ng-valid.required {
+                border-left: 0.4rem solid v.$login-form-valid-border-color;
+                /* green */
+            }
+
+            .ng-invalid {
+                border-left: 0.4rem solid v.$login-form-invalid-border-color;
+                padding-left: 0.2rem;
+                /* red */
+            }
+
+            .user-profile-errors {
+                padding-top: 0.5rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                .error {
+                    background-color: v.$login-form-message-background-color;
+                    color: v.$login-form-message-color;
+                    padding: 0.5rem;
+                    text-align: center;
+                }
+            }
+        }
+
+        .user-profile-actions {
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+
+            button {
+                all: unset;
+                background-color: v.$primary-color;
+                color: v.$secondary-color;
+                border: none;
+                padding: 0.5rem 0.5rem;
+                margin: 0.5rem 0;
+                cursor: pointer;
+                font-weight: bold;
+                font-size: 1rem;
+                border-radius: 0.3rem;
+                width: 6rem;
+                text-align: center;
+            }
+
+            button:hover {
+                background-color: v.$secondary-color;
+                color: v.$primary-color;
+            }
+        }
+    }
+}

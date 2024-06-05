@@ -1,0 +1,75 @@
+<section [formGroup]="userProfileForm" class="container">
+    <div class="container-flex">
+        <header>
+            <h3>Informations vous concernant</h3>
+        </header>
+        <div class="user-profile" [ngClass]="{'edit': mode==='edit'}">
+            <div class="user-profile-email">
+                <p class="user-profile-label" [ngClass]="{'edit': mode==='edit'}">Email :</p>
+                <p>{{userProfile.email}}</p>
+            </div>
+            <div class="user-profile-name">
+                <div class="user-profile-name view" *ngIf="mode==='view'">
+                    <p class="user-profile-label">Nom complet :</p>
+                    <p>{{userProfile.first_name}} {{userProfile.last_name}}</p>
+                </div>
+                <div class="user-profile-name edit" *ngIf="mode==='edit'">
+                    <div class="user-profile-name-content">
+                        <div class="user-profile-firstName">
+                            <label for="first_name" class="user-profile-label edit">Prénom :</label>
+                            <input formControlName="first_name" type="text" placeholder="Prénom" class="input-name"
+                                required />
+                        </div>
+                        <div class="user-profile-lastName">
+                            <label for="last_name" class="user-profile-label edit">Nom :</label>
+                            <input formControlName="last_name" type="text" placeholder="Nom" class="input-name"
+                                required />
+                        </div>
+                    </div>
+                    <div class="user-profile-errors">
+                        <div *ngIf="form['first_name'].invalid && (form['first_name'].touched || form['first_name'].dirty)"
+                            class="error">
+                            <div *ngIf="form['first_name'].errors?.['required']">Le prénom est requis.</div>
+                            <div *ngIf="form['first_name'].errors?.['pattern']">Le prénom doit être composé de lettres.
+                            </div>
+                        </div>
+                        <div *ngIf="form['last_name'].invalid && (form['last_name'].touched || form['last_name'].dirty)"
+                            class="error">
+                            <div *ngIf="form['last_name'].errors?.['required']">Le nom est requis.</div>
+                            <div *ngIf="form['last_name'].errors?.['pattern']">Le nom doit être composé de lettres.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="user-profile-phone">
+                <div class="user-profile-phone view" *ngIf="mode==='view'">
+                    <p class="user-profile-label">Téléphone :</p>
+                    <p>{{userProfile.phone_number}}</p>
+                </div>
+                <div class="user-profile-phone edit" *ngIf="mode==='edit'">
+                    <div class="user-profile-phonenumber">
+                        <label for="phone_number" class="user-profile-label edit">Téléphone :</label>
+                        <input formControlName="phone_number" type="text" placeholder="Téléphone" class="input-phone"
+                            required />
+                    </div>
+                    <div class="user-profile-errors">
+                        <div *ngIf="form['phone_number'].invalid && (form['phone_number'].touched || form['phone_number'].dirty)"
+                            class="error">
+                            <div *ngIf="form['phone_number'].errors?.['required']">Le téléphone est requis.</div>
+                            <div *ngIf="form['phone_number'].errors?.['pattern']">Le téléphone doit être un numéro valide
+                                commençant par +(numéro téléphonique pays).</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="user-profile-actions">
+                <button (click)="editProfile()" class="btn-edit" *ngIf="mode==='view'">Modifier</button>
+                <button (click)="saveUserProfile()" class="btn-update" *ngIf="mode==='edit'"
+                    [disabled]="!userProfileForm.valid">Enregistrer</button>
+            </div>
+        </footer>
+    </div>
+</section>

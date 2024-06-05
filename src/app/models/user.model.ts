@@ -1,18 +1,38 @@
-export class User {
-    user_id: number | null = null;
+export class UserProfile {
     email: string;
-    firstName: string;
-    lastName: string;
-    phone: string;
-    role_names: string[];
+    first_name: string;
+    last_name: string;
+    phone_number: string;
 
-    constructor(email = '', firstName = '', lastName = '', phone = '', role_names = ['user']) {
-        this.user_id = null;   
+    constructor(email = '', first_name = '', last_name = '', phone_number = '') {
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.role_names = role_names;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.phone_number = phone_number;
+    }
+
+    get firstName() {
+        return this.first_name;
+    }
+
+    get lastName() {
+        return this.last_name;
+    }
+
+    get phone() {
+        return this.phone_number;
+    }
+
+    set firstName(value: string) {
+        this.first_name = value;
+    }
+
+    set lastName(value: string) {
+        this.last_name = value;
+    }
+
+    set phone(value: string) {
+        this.phone_number = value;
     }
 
     loadfromJson(json: any) {

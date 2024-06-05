@@ -76,8 +76,7 @@ export class AuthenticateService {
       password: user.password,
       first_name: user.firstName,
       last_name: user.lastName,
-      phone_number: user.phone,
-      role_names: ['user']
+      phone_number: user.phone
     }
 
     return new Observable<boolean>(observer => {
