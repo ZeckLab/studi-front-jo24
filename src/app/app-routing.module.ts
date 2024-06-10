@@ -9,11 +9,12 @@ import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { UnderConstructionComponent } from './pages/under-construction/under-construction.component';
 import { AdminOffersComponent } from './pages/admin-offers/admin-offers.component';
 import { UserProfiletComponent } from './pages/user-profile/user-profile.component';
+import { AdminOrdersComponent } from './pages/admin-orders/admin-orders.component';
 
 const routes: Routes = [
     { path: 'admin/offers', component: AdminOffersComponent},
     { path: 'admin/events', component: UnderConstructionComponent},
-    { path: 'admin/orders', component: UnderConstructionComponent},
+    { path: 'admin/orders', component: AdminOrdersComponent},
     { path: 'admin/staffs', component: UnderConstructionComponent},
     { path: 'admin', component: AdminHomeComponent},
     { path: 'offers', component: OffersPageComponent },

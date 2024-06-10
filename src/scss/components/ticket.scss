@@ -4,16 +4,19 @@
 .ticket {
     display: flex;
     align-items: flex-start;
-    margin-top: 1rem;
     border: 0.2rem solid v.$primary-color;
     border-radius: 0.5rem;
     background-color: v.$background-color;
     box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.5);
-    width: 100%;
+    width: 38rem;
     height: 12rem;
     box-sizing: border-box;
 
-    @include mixins.media-max("phone-down") {
+    @include mixins.media-max("desktop-down") {
+        width: auto;
+    }
+
+    @include mixins.media-max("between-phone-tablet") {
         flex-direction: column;
         height: auto;
         align-items: center;
@@ -22,19 +25,21 @@
     .ticket-header {
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 26rem;
         gap: 1.5rem;
         border-right: solid 0.2rem v.$primary-color;
         height: 100%;
         box-sizing: border-box;
 
-        @include mixins.media-max("phone-down") {
-            border-right: none;
-            border-bottom: solid 0.2rem v.$primary-color;
+        @include mixins.media-max("desktop-down") {
+            gap: 1rem;
+            width: auto;
         }
 
-        @include mixins.media-max("phone-down") {
-            gap: 0.5rem;
+        @include mixins.media-max("between-phone-tablet") {
+            border-right: none;
+            border-bottom: solid 0.2rem v.$primary-color;
+            gap: 0.75rem;
         }
 
         .ticket-logo {
@@ -65,10 +70,9 @@
             gap: 1rem;
             padding: 0.25rem 0.25rem;
 
-            @include mixins.media-max("phone-down") {
+            @include mixins.media-max("between-phone-tablet") {
                 padding: 0.5rem 0.25rem 1rem 0.25rem;
                 justify-content: space-evenly;
-                gap: 0.5rem;
             }
 
             p,

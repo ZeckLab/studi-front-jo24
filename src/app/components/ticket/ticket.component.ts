@@ -10,11 +10,20 @@ import { Component, Input } from '@angular/core';
 export class TicketComponent {
   @Input() ticket: any = {};
   @Input() orderName!: string;
+  @Input() loaded: boolean = true;
 
   constructor() {
   }
 
   ngAfterViewInit() {
+    console.log('ngAfterViewInit'+ this.orderName);
+    console.log(this.loaded);
+    if (this.loaded) {
+      this.loadQrCode();
+    }
+  }
+
+  loadQrCode() {
     let qrcode = this.ticket.qrcode;
     let id = 'img-qrcode'+this.orderName;
     let div = document.getElementById(id);

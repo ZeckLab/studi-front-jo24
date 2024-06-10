@@ -11,41 +11,38 @@
     box-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
 
+    // Dashboard for the admin page
+    &.dashboard {
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+
+        border-bottom: 0.15rem solid v.$primary-color;
+
+        @include mixins.media-max("phone-between") {
+            padding: 0.5rem;
+        }
+    }
+
     .order-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 2rem;
 
-        @include mixins.media-max("phone-between") {
+        @include mixins.media-max("phone-up") {
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .order-presentation {
-            display: flex;
-            gap: 2rem;
-
-            @include mixins.media-max("tablet-up") {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
-            }
-
-            h3,
-            p {
-                margin: 0;
-            }
+        @include mixins.media-max("phone-between") {
+            gap: 0.75rem;
         }
 
-        .order-actions {
+        .order-presentation {
             display: flex;
-            gap: 2rem;
-
-            @include mixins.media-max("between-phone-tablet") {
-                gap: 1rem;
-            }
+            gap: 0.5rem 1.75rem;
 
             @include mixins.media-max("phone-down") {
                 flex-direction: column;
@@ -53,20 +50,66 @@
                 gap: 0.5rem;
             }
 
+            &.dashboard {
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+
+            h3 {
+                margin: 0;
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: v.$primary-color;
+                width: 12.5rem;
+
+                @include mixins.media-max("phone-between") {
+                    width: 100%;
+                    font-size: 1rem;
+                    text-align: center;
+                }
+            }
+            
+            p {
+                margin: 0;
+                text-align: center;
+
+                &.dashboard {
+                    width:12.5rem;
+
+                    &-date {
+                        width: 8rem;
+                    }
+
+                    &-name {
+                        width: 14rem;
+                    }
+                }
+            }
+
+            div.dashboard-mini {
+                display: flex;
+                gap: 2rem;
+
+                p {
+                    margin: 0;
+                    width: 4rem;
+                    text-align: center;
+                }
+            }
+        
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 2rem;
+
             a {
                 all: unset;
                 color: v.$primary-color;
                 font-size: 1rem;
                 font-weight: 600;
                 text-decoration: underline;
-
-                @include mixins.media-max("between-phone-tablet") {
-                    font-size: 0.9rem;
-                }
-
-                @include mixins.media-max("phone-down") {
-                    font-size: 1rem;
-                }
 
                 &:hover {
                     cursor: pointer;
@@ -80,6 +123,15 @@
         display: flex;
         flex-direction: column;
 
+        &.dashboard {
+            flex-direction: row;
+            gap: 1.75rem;
+            
+            @include mixins.media-max("desktop-up") {
+                flex-direction: column;
+            }
+        }
+
         .order-details {
             display: flex;
             justify-content: center;
@@ -89,6 +141,8 @@
             width: 100%;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
     }
 }

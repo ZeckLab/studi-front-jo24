@@ -8,14 +8,13 @@ import { Router } from '@angular/router';
 import { ModalService } from '../../services/modal/modal.service';
 
 @Component({
-  selector: 'app-orders',
+  selector: 'app-admin-orders',
   standalone: true,
-  templateUrl: './orders.component.html',
-  styleUrl: '/src/scss/pages/orders.scss',
-  imports: [CommonModule, OrderComponent]
+  imports: [CommonModule, OrderComponent],
+  templateUrl: './admin-orders.component.html',
+  styleUrl: '/src/scss/pages/admin-orders.scss'
 })
-export class OrdersComponent {
-
+export class AdminOrdersComponent {
   ordersArray: Order[] = [];
   countOrders: number = 0;
 

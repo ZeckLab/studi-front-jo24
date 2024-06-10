@@ -7,14 +7,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50rem;
+        width: 75rem;
         margin: 0 1rem;
 
         .orders-list {
             display: flex;
             flex-direction: column;
             width: 100%;
-            gap: 1rem;
+            gap: 0.5rem;
         }
     }
 }
