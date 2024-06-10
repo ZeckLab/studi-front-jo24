@@ -49,28 +49,4 @@ export class OfferComponent {
     document.getElementById("shoppingcart")?.scrollIntoView({behavior: "smooth"});
   }
 
-  // Admin management
-  editOffer() {
-    return;
-  }
-
-  saveOffer() {
-    return;
-  }
-
-  updateOffer() {
-    return;
-  }
-
-  addOffer() {
-    return;
-  }
-
-  hideOffer() {
-    return;
-  }
-
-  visibleOffer() {
-    return;
-  }
 }

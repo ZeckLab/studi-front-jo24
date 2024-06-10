@@ -49,18 +49,40 @@ export class OrderService {
       'Authorization': 'Bearer ' + this.authService.getToken
     });
 
-    return new Observable<Order[]>(observer => {
+    return new Observable<any>(observer => {
       this.httpClient.get(this.endpointURL, { headers }).subscribe({
         next: (data: any) => {
           const orders = [];
 
-          for(const jsonOrder of data){
+          for(const jsonOrder of data.orders){
             const order = new Order();
             order.loadfromJson(jsonOrder);
             orders.push(order);
           }
 
-          observer.next(orders);
+          observer.next({count:data.count, orders:orders});
+          observer.complete();
+        },
+        error: (error) => {
+          observer.error(error);
+          observer.complete();
+        }
+      });
+    });
+  }
+
+
+  // Get the details of an order by its name
+  getDetails(name: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.authService.getToken
+    });
+
+    return new Observable<any>(observer => {
+      this.httpClient.get(this.endpointURL + '/' + name + "/details", { headers }).subscribe({
+        next: (data: any) => {
+          observer.next(data);
           observer.complete();
         },
         error: (error) => {

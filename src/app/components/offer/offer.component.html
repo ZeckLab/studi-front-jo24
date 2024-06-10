@@ -24,16 +24,4 @@
             <button class="btn-shoppingcart" (click)="scroll()">Voir mon panier</button>
         </div>
     </footer>
-    <footer *ngIf="isAdmin" [ngClass]="{'hide': !offer.visible}">
-        <div class="offer-actions" [ngClass]="{'admin': isAdmin}">
-            <div class="offer-actions-edit">
-                <button (click)="editOffer()" class="btn-edit" *ngIf="mode==='view'" [ngClass]="{'hide': !offer.visible}">Modifier</button>
-                <button (click)="saveOffer()" class="btn-update" *ngIf="mode==='edit'" [ngClass]="{'hide': !offer.visible}">Enregistrer</button>
-            </div>
-            <div class="offer-actions-visibility">
-                <button (click)="hideOffer()" class="btn-hide" *ngIf="offer.visible">Cacher</button>
-                <button (click)="visibleOffer()" class="btn-visible" *ngIf="!offer.visible" [ngClass]="{'hide': !offer.visible}">Voir</button>
-            </div>
-        </div>
-    </footer>
 </article>
