@@ -2,7 +2,7 @@
     <h4>{{event.title}}</h4>
     <p>{{event.description}}</p>
     <div class="event-content">
-        <p>Date : {{event.date.split("T")[0]}}</p>
+        <p>Date : {{event.date.split("T")[0] | date : "dd/MM/yyyy"}}</p>
         <p>Heure : {{event.date.split("T")[1]}}</p>
         <p>Nombre de places : {{event.capacity}}</p>
     </div>

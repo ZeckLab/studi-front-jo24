@@ -1,10 +1,25 @@
-<section class="orders-content">
+
+<section class="orders-choice">
+    <a (click)="toggleLatest()" [ngClass]="{'selected': showLatest}">Les {{limit}} dernières commandes</a>
+    <a (click)="toggleByDate()" [ngClass]="{'selected': showByDate}">Les commandes des 5 derniers jours</a>
+</section>
+
+<section class="orders-content" *ngIf="showLatest">
     <div class="container">
         <div class="orders-title">
-            <h3>{{countOrders}} commandes :</h3>
+            <h3>Les {{limit}} dernières commandes.<br>Au total : {{countOrders}} commandes</h3>
         </div>
         <div class="orders-list">
+            <div class="orders-date-list-pagination">
+                <a *ngFor="let range of listRanges" (click)="changeOrders(range.start)"
+                    [ngClass]="{'selected': range.start == ordersSelected}">{{ range.start }}-{{ range.end }}</a>
+                <p>Limite d'affichage : {{limit}}</p>
+            </div>
             <app-order *ngFor="let orderItem of ordersArray" [order]="orderItem" [isUser]="false"/>
         </div>
     </div>
+</section>
+<section class="orders-date" *ngIf="showByDate">
+    <h3>Les commandes des 5 derniers jours</h3>
+    <app-orders-date *ngFor="let dateOrder of datesArray" [dateOrders]="dateOrder" />
 </section>

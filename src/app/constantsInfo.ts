@@ -21,4 +21,6 @@ export class ConstantsInfo {
             message: 'Veuillez fermer cette boîte de dialogue.'
         }
     };
+
+    static readonly LIMIT_DISPLAY_ORDERS = 2;
 }

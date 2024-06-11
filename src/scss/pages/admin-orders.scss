@@ -1,3 +1,25 @@
+@use "../variables.scss" as v;
+
+.orders-choice {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 0 2rem;
+
+    a {
+        text-decoration: underline;
+        color: v.$primary-color;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &.selected {
+            font-weight: bold;
+            text-decoration: none;
+            cursor: default;
+        }
+    }
+}
+
 .orders-content {
     width : 100%;
     display: flex;
@@ -10,11 +32,40 @@
         width: 75rem;
         margin: 0 1rem;
 
+        .orders-title {
+            text-align: center;
+        }
+
         .orders-list {
             display: flex;
             flex-direction: column;
             width: 100%;
             gap: 0.5rem;
+
+            .orders-date-list-pagination {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                margin-top: 1rem;
+
+                a {
+                    text-decoration: underline;
+                    color: v.$primary-color;
+                    font-size: 1rem;
+                    cursor: pointer;
+
+                    &.selected {
+                        font-weight: bold;
+                        text-decoration: none;
+                        cursor: default;
+                    }
+                }
+            }
         }
     }
+}
+
+.orders-date {
+    text-align: center;
 }

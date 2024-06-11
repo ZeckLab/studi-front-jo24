@@ -1,0 +1,24 @@
+<div class="orders-date">
+    <div class="container">
+        <div class="orders-date-title">
+            <div class="orders-date-title-left">
+                <h3>{{ dateOrders | date : "dd/MM/yyyy" }}</h3>
+                <p title="Nombre total de commandes pour ce jour">Nombre total : {{ countOrders }}</p>
+            </div>
+            <div class="orders-date-title-right">
+                <p title="Montant total des commandes affichées"> Montant total : {{ mountOrders | currency : "EUR" }}</p>
+                <p title="Nombre de places réservées">{{ placesOrders }} places</p>
+                <a (click)="showDetails = !showDetails">{{ showDetails ? 'Masquer' : 'Afficher' }} les détails</a>
+            </div>
+        </div>
+        @if(showDetails){
+        <div class="orders-date-list">
+            <div class="orders-date-list-pagination">
+                <a *ngFor="let range of listRanges" (click)="changeOrders(range.start)"
+                    [ngClass]="{'selected': range.start == ordersSelected}">{{ range.start }}-{{ range.end }}</a>
+            </div>
+            <app-order *ngFor="let orderItem of ordersArray" [order]="orderItem" [isUser]="isUser"></app-order>
+        </div>
+        }
+    </div>
+</div>
