@@ -14,6 +14,17 @@
 
         section {
             padding-left: 2rem;
+
+            &.events h2,
+            &.crud h2,
+            &.staff h2 {
+                color: darkorange;
+            }
+
+            &.orders h2,
+            &.offers h2 {
+                color: green;
+            }
         }
     }
 }

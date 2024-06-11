@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConstantsInfo } from '../../constantsInfo';
 
 @Component({
   selector: 'app-admin-home',
@@ -8,4 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: '/src/scss/pages/admin-home.scss'
 })
 export class AdminHomeComponent {
+  limit = ConstantsInfo.LIMIT_DISPLAY_ORDERS;
 }
