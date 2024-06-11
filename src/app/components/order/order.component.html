@@ -2,11 +2,11 @@
     <div class="order-header">
         <div class="order-presentation" [ngClass]="{'dashboard': !isUser}">
             <h3 [ngClass]="{'dashboard': !isUser}">{{order.name}}</h3>
-            <p [ngClass]="{'dashboard-date': !isUser}" title="commandée le">{{order.date_time.split("T")[0]}}</p>
+            <p [ngClass]="{'dashboard-date': !isUser}" title="commandée le">{{order.date_time.split("T")[0] | date : "dd/MM/yyyy"}}</p>
             @if(!isUser) {
             <p class="dashboard-name" title="Prénom et Nom de l'acheteur">{{order.user}}</p>
             <div class="dashboard-mini">
-                <p title="Montant total">{{order.mount}} €</p>
+                <p title="Montant total">{{order.mount | currency : "EUR"}}</p>
                 <p title="Nombre de participants">{{order.places}}</p>
             </div>
             }

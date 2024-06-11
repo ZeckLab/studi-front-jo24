@@ -1,7 +1,7 @@
 <section class="orders-content">
     <div class="container">
         <div class="orders-title">
-            <h3>Mes {{countOrders}} commandes :</h3>
+            <h3>Mes commandes : {{countOrders}}</h3>
         </div>
         <div class="orders-list">
             <app-order *ngFor="let orderItem of ordersArray" [order]="orderItem" />

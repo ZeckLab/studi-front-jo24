@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { registerLocaleData } from '@angular/common';
+import * as fr from '@angular/common/locales/fr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,7 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { EventComponent } from './components/event/event.component';
 import { OfferComponent } from './components/offer/offer.component';
-import { OffersPageComponent} from './pages/offers/offers.component';
+import { OffersPageComponent } from './pages/offers/offers.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ShoppingCartComponent } from "./components/shopping-cart/shopping-cart.component";
 import { SignLogInComponent } from './pages/sign-log-in/sign-log-in.component';
@@ -30,8 +32,11 @@ import { AdminOffersComponent } from './pages/admin-offers/admin-offers.componen
         OffersPageComponent,
         ModalComponent
     ],
-    providers: [],
+    providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
     bootstrap: [AppComponent]
 })
 export class AppModule {
+    constructor() {
+        registerLocaleData(fr.default);
+    }
 }
